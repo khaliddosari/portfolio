@@ -250,6 +250,7 @@ ul {
 .hamburger::after {
     content: '';
     position: absolute;
+    left: 0;
     width: 24px;
     height: 2px;
     background: var(--text-primary);
