@@ -1,3 +1,16 @@
+// Restore scroll position on reload
+window.addEventListener('beforeunload', () => {
+    sessionStorage.setItem('scrollPos', window.scrollY);
+});
+
+window.addEventListener('load', () => {
+    const scrollPos = sessionStorage.getItem('scrollPos');
+    if (scrollPos) {
+        window.scrollTo(0, parseInt(scrollPos));
+        sessionStorage.removeItem('scrollPos');
+    }
+});
+
 // Initialize AOS
 AOS.init({
     duration: 700,
