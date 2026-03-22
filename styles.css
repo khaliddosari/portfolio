@@ -330,6 +330,10 @@ ul {
     letter-spacing: -0.5px;
 }
 
+.hero-name-ar {
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
+
 .hero-tagline {
     font-size: 1.2rem;
     color: var(--text-secondary);
