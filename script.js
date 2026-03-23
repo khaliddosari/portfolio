@@ -1,22 +1,35 @@
-// Restore scroll position on reload
+// Disable browser's automatic scroll restoration
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Scroll to top on fresh page load
+window.addEventListener('load', () => {
+    // Only restore scroll position on reload, not on fresh navigation
+    if (performance.navigation && performance.navigation.type === 1) {
+        // Page was reloaded — restore position
+        const scrollPos = sessionStorage.getItem('scrollPos');
+        if (scrollPos) {
+            window.scrollTo(0, parseInt(scrollPos));
+            sessionStorage.removeItem('scrollPos');
+        }
+    } else {
+        // Fresh load — always start at the top
+        window.scrollTo(0, 0);
+    }
+});
+
 window.addEventListener('beforeunload', () => {
     sessionStorage.setItem('scrollPos', window.scrollY);
 });
 
-window.addEventListener('load', () => {
-    const scrollPos = sessionStorage.getItem('scrollPos');
-    if (scrollPos) {
-        window.scrollTo(0, parseInt(scrollPos));
-        sessionStorage.removeItem('scrollPos');
-    }
-});
-
-// Initialize AOS
+// Initialize AOS after ensuring scroll position
 AOS.init({
     duration: 700,
     easing: 'ease-out',
     once: true,
-    offset: 80
+    offset: 80,
+    startEvent: 'load'
 });
 
 // Navbar scroll effect
