@@ -4,10 +4,3 @@ Thumbs.db
 .vscode/
 .idea/
 node_modules/
-
-# Fonts
-fonts/
-*.woff
-*.woff2
-*.ttf
-*.otf
