@@ -1,18 +1,18 @@
-/* Custom Thmanyah Fonts (Git Ignored Typeface Family) */
+/* Custom Thmanyah Fonts — served from CDN (github.com/khaliddosari/thmanyah-fonts via jsDelivr) */
 
 /* 1. Thmanyah Serif Display (Signature Editorial Display Serif) */
 @font-face {
     font-family: 'Thmanyah Serif Display';
-    src: url('fonts/thmanyah%20typeface/thmanyahserifdisplay/woff2/thmanyahserifdisplay-Bold.woff2') format('woff2'),
-         url('fonts/thmanyah%20typeface/thmanyahserifdisplay/otf/thmanyahserifdisplay-Bold.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahserifdisplay/woff2/thmanyahserifdisplay-Bold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahserifdisplay/otf/thmanyahserifdisplay-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Thmanyah Serif Display';
-    src: url('fonts/thmanyah%20typeface/thmanyahserifdisplay/woff2/thmanyahserifdisplay-Regular.woff2') format('woff2'),
-         url('fonts/thmanyah%20typeface/thmanyahserifdisplay/otf/thmanyahserifdisplay-Regular.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahserifdisplay/woff2/thmanyahserifdisplay-Regular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahserifdisplay/otf/thmanyahserifdisplay-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -21,16 +21,16 @@
 /* 2. Thmanyah Serif Text (Editorial Body Serif) */
 @font-face {
     font-family: 'Thmanyah Serif Text';
-    src: url('fonts/thmanyah%20typeface/thmanyahseriftext/woff2/thmanyahseriftext-Bold.woff2') format('woff2'),
-         url('fonts/thmanyah%20typeface/thmanyahseriftext/otf/thmanyahseriftext-Bold.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahseriftext/woff2/thmanyahseriftext-Bold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahseriftext/otf/thmanyahseriftext-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Thmanyah Serif Text';
-    src: url('fonts/thmanyah%20typeface/thmanyahseriftext/woff2/thmanyahseriftext-Regular.woff2') format('woff2'),
-         url('fonts/thmanyah%20typeface/thmanyahseriftext/otf/thmanyahseriftext-Regular.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahseriftext/woff2/thmanyahseriftext-Regular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahseriftext/otf/thmanyahseriftext-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -39,16 +39,16 @@
 /* 3. Thmanyah Sans (Modern Arabian Sans Serif) */
 @font-face {
     font-family: 'Thmanyah Sans';
-    src: url('fonts/thmanyah%20typeface/thmanyahsans/woff2/thmanyahsans-Bold.woff2') format('woff2'),
-         url('fonts/thmanyah%20typeface/thmanyahsans/otf/thmanyahsans-Bold.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahsans/woff2/thmanyahsans-Bold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahsans/otf/thmanyahsans-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Thmanyah Sans';
-    src: url('fonts/thmanyah%20typeface/thmanyahsans/woff2/thmanyahsans-Regular.woff2') format('woff2'),
-         url('fonts/thmanyah%20typeface/thmanyahsans/otf/thmanyahsans-Regular.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahsans/woff2/thmanyahsans-Regular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahsans/otf/thmanyahsans-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -57,16 +57,16 @@
 /* Legacy alias for simple backward compatibility */
 @font-face {
     font-family: 'Thmanyah';
-    src: url('fonts/thmanyah%20typeface/thmanyahserifdisplay/woff2/thmanyahserifdisplay-Bold.woff2') format('woff2'),
-         url('fonts/thmanyah%20typeface/thmanyahserifdisplay/otf/thmanyahserifdisplay-Bold.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahserifdisplay/woff2/thmanyahserifdisplay-Bold.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahserifdisplay/otf/thmanyahserifdisplay-Bold.otf') format('opentype');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
 @font-face {
     font-family: 'Thmanyah';
-    src: url('fonts/thmanyah%20typeface/thmanyahserifdisplay/woff2/thmanyahserifdisplay-Regular.woff2') format('woff2'),
-         url('fonts/thmanyah%20typeface/thmanyahserifdisplay/otf/thmanyahserifdisplay-Regular.otf') format('opentype');
+    src: url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahserifdisplay/woff2/thmanyahserifdisplay-Regular.woff2') format('woff2'),
+         url('https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahserifdisplay/otf/thmanyahserifdisplay-Regular.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
