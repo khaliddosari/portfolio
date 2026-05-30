@@ -4,6 +4,7 @@ Thumbs.db
 .vscode/
 .idea/
 node_modules/
+Liquid Glass-Portfolio Design System/
 
 # wrangler files
 .wrangler
