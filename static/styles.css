@@ -981,6 +981,27 @@ ul {
     font-size: 0.85rem;
 }
 
+/* WIDE SECTIONS — fill the empty side space on large screens */
+#projects .container,
+#certifications .container,
+#skills .container {
+    max-width: 1680px;
+}
+
+@media (min-width: 1400px) {
+    #projects .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #certifications .certs-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    #skills .skills-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .navbar {
         -webkit-mask-image: none;
