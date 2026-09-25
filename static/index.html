@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,757 +18,774 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://khalid-ai.dev/og-image.png">
 
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f3f6fa">
+
     <title>Khalid - Portfolio</title>
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Theme: a stored choice wins, otherwise follow the system. Runs before first paint, so no flash. -->
+    <script>
+        (function () {
+            var theme;
+            try { theme = localStorage.getItem('theme'); } catch (e) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- AOS (Animate On Scroll) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <!-- Thmanyah (see @font-face in styles.css) -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahsans/woff2/thmanyahsans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/khaliddosari/thmanyah-fonts@v1/thmanyah%20typeface/thmanyahsans/woff2/thmanyahsans-Bold.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#hero" class="nav-logo" aria-label="Home">
-                <img src="logo.png" alt="Khalid Al Dosari" class="logo-img">
+    <a class="btn btn-primary skip-link" href="#main">Skip to content</a>
+
+    <!-- ICON SPRITE: Lucide-style 24px strokes, used as <svg class="icon"><use href="#i-…"/></svg> -->
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;">
+        <symbol id="i-cv" viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <circle cx="8" cy="7" r="1.5"/>
+            <path d="M5 12a3 3 0 0 1 6 0"/>
+            <line x1="13" y1="11" x2="18" y2="11"/>
+            <line x1="6" y1="15" x2="18" y2="15"/>
+            <line x1="6" y1="18" x2="18" y2="18"/>
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+        </symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect width="4" height="12" x="2" y="9"/>
+            <circle cx="4" cy="4" r="2"/>
+        </symbol>
+        <symbol id="i-github" viewBox="0 0 24 24">
+            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+            <path d="M9 18c-4.51 2-5-2-7-2"/>
+        </symbol>
+        <symbol id="i-external" viewBox="0 0 24 24">
+            <path d="M15 3h6v6"/>
+            <path d="M10 14 21 3"/>
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+            <path d="M5 12h14"/>
+            <path d="m12 5 7 7-7 7"/>
+        </symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24">
+            <path d="M8 2v4"/>
+            <path d="M16 2v4"/>
+            <rect width="18" height="18" x="3" y="4" rx="2"/>
+            <path d="M3 10h18"/>
+        </symbol>
+        <symbol id="i-verify" viewBox="0 0 24 24">
+            <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
+            <path d="m9 12 2 2 4-4"/>
+        </symbol>
+        <symbol id="i-file" viewBox="0 0 24 24">
+            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/>
+            <path d="M14 2v4a2 2 0 0 0 2 2h4"/>
+            <path d="M10 9H8"/>
+            <path d="M16 13H8"/>
+            <path d="M16 17H8"/>
+        </symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2"/>
+            <path d="M12 20v2"/>
+            <path d="m4.93 4.93 1.41 1.41"/>
+            <path d="m17.66 17.66 1.41 1.41"/>
+            <path d="M2 12h2"/>
+            <path d="M20 12h2"/>
+            <path d="m6.34 17.66-1.41 1.41"/>
+            <path d="m19.07 4.93-1.41 1.41"/>
+        </symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </symbol>
+    </svg>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="#hero" class="brand" aria-label="Khalid Al Dosari, back to top">
+                <span class="brand-tile"><img src="logo.png" alt="" width="28" height="28"></span>
+                <span class="brand-name">Khalid Al Dosari</span>
             </a>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-                <span class="hamburger"></span>
-            </button>
-            <div class="nav-overlay" id="navOverlay"></div>
-            <ul class="nav-links" id="navLinks">
-                <li class="sidebar-header">
-                    <div class="sidebar-brand">
-                        <img src="logo.png" alt="Khalid Al Dosari" class="sidebar-logo">
-                        <div>
-                            <span class="sidebar-name">Khalid Al Dosari</span>
-                            <span class="sidebar-tagline">AI Engineer</span>
-                        </div>
-                    </div>
-                </li>
-                <li><a href="#about" aria-label="About"><i class="fas fa-user"></i><span class="nav-label">About</span></a></li>
-                <li><a href="#education" aria-label="Education"><i class="fas fa-graduation-cap"></i><span class="nav-label">Education</span></a></li>
-                <li><a href="#projects" aria-label="Projects"><i class="fas fa-folder-open"></i><span class="nav-label">Projects</span></a></li>
-                <li><a href="#experience" aria-label="Experience"><i class="fas fa-briefcase"></i><span class="nav-label">Experience</span></a></li>
-                <li><a href="#certifications" aria-label="Certifications"><i class="fas fa-award"></i><span class="nav-label">Certifications</span></a></li>
-                <li><a href="#skills" aria-label="Skills"><i class="fas fa-laptop-code"></i><span class="nav-label">Skills</span></a></li>
-                <li><a href="#languages" aria-label="Languages"><i class="fas fa-language"></i><span class="nav-label">Languages</span></a></li>
-                <li class="sidebar-footer">
-                    <div class="sidebar-social">
-                        <a href="assets/Khalid_Al_Dosari_AI_Engineer.pdf" target="_blank" rel="noopener" aria-label="CV / Resume">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.1em; height: 1.1em; vertical-align: middle;">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <circle cx="8" cy="7" r="1.5"></circle>
-                                <path d="M5 12a3 3 0 0 1 6 0"></path>
-                                <line x1="13" y1="11" x2="18" y2="11"></line>
-                                <line x1="6" y1="15" x2="18" y2="15"></line>
-                                <line x1="6" y1="18" x2="18" y2="18"></line>
-                            </svg>
-                        </a>
-                        <a href="mailto:khaliddosari70@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="tel:+966553225155" aria-label="Phone"><i class="fas fa-phone"></i></a>
-                        <a href="https://www.linkedin.com/in/khalid-al-dosari/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/khaliddosari" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <div class="hero-photo">
-                <img src="assets/mypic.jpeg" alt="Khalid's photo" onerror="this.src='https://via.placeholder.com/200/1a1a2e/4fc3f7?text=K';">
-            </div>
-            <h1 class="hero-name hero-name-ar">خالد آل دوســـــري</h1>
-            <h1 class="hero-name">Khalid Al Dosari</h1>
-            <p class="hero-tagline">CS Student | AI Engineer<br>Tuwaiq Academy Alumnus</p>
-            <div class="hero-contact">
-                <a href="assets/Khalid_Al_Dosari_AI_Engineer.pdf" target="_blank" rel="noopener" aria-label="CV / Resume">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em; vertical-align: -0.125em;">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <circle cx="8" cy="7" r="1.5"></circle>
-                        <path d="M5 12a3 3 0 0 1 6 0"></path>
-                        <line x1="13" y1="11" x2="18" y2="11"></line>
-                        <line x1="6" y1="15" x2="18" y2="15"></line>
-                        <line x1="6" y1="18" x2="18" y2="18"></line>
-                    </svg>
+            <nav class="site-nav" id="siteNav" aria-label="Sections">
+                <a class="nav-link" href="#about">About</a>
+                <a class="nav-link" href="#education">Education &amp; Experience</a>
+                <a class="nav-link" href="#projects">Projects</a>
+                <a class="nav-link" href="#certifications">Certifications</a>
+                <a class="nav-link" href="#skills">Skills</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn btn-outline btn-icon theme-toggle" id="themeToggle" type="button" aria-label="Dark theme" aria-pressed="false" title="Toggle dark theme">
+                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+                </button>
+                <a class="btn btn-primary header-cv" href="assets/Khalid_Al_Dosari_AI_Engineer.pdf" target="_blank" rel="noopener">
+                    <svg class="icon" aria-hidden="true"><use href="#i-cv"/></svg>CV
                 </a>
-                <a href="mailto:khaliddosari70@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+966553225155" aria-label="Phone"><i class="fas fa-phone"></i></a>
-                <a href="https://www.linkedin.com/in/khalid-al-dosari/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/khaliddosari" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
             </div>
-            <a href="#projects" class="btn btn-primary">View My Work</a>
         </div>
-    </section>
+    </header>
 
-    <!-- ABOUT -->
-    <section class="section" id="about">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">About Me</h2>
-            <div class="about-content" data-aos="fade-up" data-aos-delay="100">
-                <p>
-                    Senior computer science student and Tuwaiq Academy alumnus focusing on 
-                    applied AI Engineering, MLOps and data science. Experienced in building 
-                    end-to-end solutions built with python, data science, machine learning, 
-                    deep learning, LLMs, RAG, generative AI, and agentic workflows. Completed 
-                    several bootcamps and courses such as Building and developing AI models 
-                    bootcamp as well as Building transformer-based NLP applications course, 
-                    all of which enabled me to have a proven track record in building scalable, 
-                    production-ready systems that turn raw data into actionable insights and 
+    <main class="page" id="main">
+
+        <!-- PROFILE -->
+        <section class="panel profile" id="hero" aria-labelledby="profile-name">
+            <div class="profile-id">
+                <div class="avatar">
+                    <img src="assets/mypic.jpeg" alt="Khalid's photo" width="104" height="104" onerror="this.style.visibility='hidden';">
+                </div>
+                <div class="profile-names">
+                    <p class="name-ar" lang="ar">خالد آل دوســـــري</p>
+                    <h1 class="name-en" id="profile-name">Khalid Al Dosari</h1>
+                    <p class="profile-role">CS Student | AI Engineer<br>Tuwaiq Academy Alumnus</p>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <a href="assets/Khalid_Al_Dosari_AI_Engineer.pdf" target="_blank" rel="noopener" class="btn btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-cv"/></svg>CV</a>
+                <a href="#projects" class="btn btn-primary">View My Work<svg class="icon icon-flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+                <div class="contact-links">
+                    <a href="mailto:khaliddosari70@gmail.com" class="btn btn-outline btn-icon" aria-label="Email" title="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a>
+                    <a href="tel:+966553225155" class="btn btn-outline btn-icon" aria-label="Phone" title="Phone"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></a>
+                    <a href="https://www.linkedin.com/in/khalid-al-dosari/" target="_blank" rel="noopener" class="btn btn-outline btn-icon" aria-label="LinkedIn" title="LinkedIn"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+                    <a href="https://github.com/khaliddosari" target="_blank" rel="noopener" class="btn btn-outline btn-icon" aria-label="GitHub" title="GitHub"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="panel about" id="about" aria-labelledby="about-title">
+            <header class="panel-head">
+                <h2 class="panel-title" id="about-title">About Me</h2>
+            </header>
+            <div class="panel-body about-body">
+                <p class="about-text prose">
+                    Senior computer science student and Tuwaiq Academy alumnus focusing on
+                    applied AI Engineering, MLOps and data science. Experienced in building
+                    end-to-end solutions built with python, data science, machine learning,
+                    deep learning, LLMs, RAG, generative AI, and agentic workflows. Completed
+                    several bootcamps and courses such as Building and developing AI models
+                    bootcamp as well as Building transformer-based NLP applications course,
+                    all of which enabled me to have a proven track record in building scalable,
+                    production-ready systems that turn raw data into actionable insights and
                     real-world impact.
-                </p><br>
+                </p>
+                <dl class="facts">
+                    <div class="fact">
+                        <dt>Focus</dt>
+                        <dd title="AI Engineering · MLOps · Data Science">AI Engineering · MLOps · Data Science</dd>
+                    </div>
+                    <div class="fact">
+                        <dt>Degree</dt>
+                        <dd title="Bachelor's degree, Computer Science · Imam Mohammad bin Saud Islamic University">Computer Science · IMSIU</dd>
+                    </div>
+                    <div class="fact">
+                        <dt>Bootcamp</dt>
+                        <dd title="Tuwaiq Academy · Building and Developing AI Models Bootcamp">Tuwaiq Academy · AI Models</dd>
+                    </div>
+                    <div class="fact" id="languages">
+                        <dt>Languages</dt>
+                        <dd>Arabic · English</dd>
+                    </div>
+                    <div class="fact">
+                        <dt>Email</dt>
+                        <dd><a href="mailto:khaliddosari70@gmail.com" title="khaliddosari70@gmail.com">khaliddosari70@gmail.com</a></dd>
+                    </div>
+                    <div class="fact">
+                        <dt>Phone</dt>
+                        <dd><a href="tel:+966553225155" dir="ltr">+966 55 322 5155</a></dd>
+                    </div>
+                </dl>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- EDUCATION -->
-    <section class="section section-alt" id="education">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Education</h2>
-            <div class="education-grid">
+        <!-- EDUCATION -->
+        <section class="panel education" id="education" aria-labelledby="education-title">
+            <header class="panel-head">
+                <h2 class="panel-title" id="education-title">Education</h2>
+            </header>
+            <div class="panel-body entries">
 
                 <!-- Tuwaiq Card -->
-                <div class="edu-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="edu-card-header">
-                        <img src="assets/education/tuwaiqacademy_logo.jpg" alt="University Logo" class="org-logo" onerror="this.style.display='none';">
-                        <div>
-                            <h3>Tuwaiq Academy</h3>
-                            <p class="edu-degree">Building and Developing AI Models Bootcamp</p>
-                        </div>
-                    </div>
-                    <p class="edu-dates"><i class="fas fa-calendar-alt"></i> June 2026 - present</p>
-                    <ul class="exp-responsibilities">
-                        <li>Built a strong foundation in <b>AI</b>, <b>machine learning</b> and <b>deep learning</b> by covering 
-                                data handling and deep learning applications in <b>computer vision</b> and <b>NLP</b> using 
-                                <b>TensorFlow</b>, <b>PyTorch</b>, and <b>Hugging Face Transformers</b>.</li>
-
-                            <li>Also Learned cloud based AI services on <b>AWS</b> and <b>Azure</b>, along with <b>MLOps</b> essentials 
-                                such as <b>Docker</b> and <b>Git</b> for managing the model lifecycle.</li>
-                    </ul>
-                </div>
-
-                <!-- Imam Card -->
-                <div class="edu-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="edu-card-header">
-                        <img src="assets/education/university-logo.jpg" alt="University Logo" class="org-logo" onerror="this.style.display='none';">
-                        <div>
-                            <h3>Imam Mohammad bin Saud Islamic University</h3>
-                            <p class="edu-degree">Bachelor's degree, Computer Science</p>
-                        </div>
-                    </div>
-                    <p class="edu-dates"><i class="fas fa-calendar-alt"></i> August 2022 - present</p>
-                    <ul class="exp-responsibilities">
-                        <li>Built a strong foundation in <b>software engineering</b>, <b>machine learning</b>, 
-                            and <b>artificial intelligence</b>, applied directly to deployed projects.</li>
-                        
-                        <li><b>Media & Design Leader</b> at the Student Advisory Council and volunteer 
-                                at Tuwaiq Club, Google Developers Students Club and Information Security Club.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="section" id="projects">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Projects</h2>
-            <div class="projects-grid">
-
-                <!-- Namtheg Card -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Namtheg AutoML</h3>
-                    <p>Developed an end-to-end <b>agentic automated machine learning 
-                        pipeline</b> leveraging <b>Python</b>, <b>LangChain</b>, <b>FastAPI</b>, <b>Next.js</b>, 
-                        <b>Modal</b>, <b>React</b> and <b>TypeScript</b>; built a full <b>MLOps stack</b> 
-                        enabling users to upload raw datasets, train custom models, 
-                        and deploy production-ready cloud APIs via Modal.
-                    </p>
-
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">NEXT.JS</span>
-                        <span class="tag">Modal</span>
-                        <span class="tag">LangChain</span>
-                        <span class="tag">DeepSeek API</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">React</span>
-                        <span class="tag">Render</span>
-                    </div>
-
-                    <div class="project-links">
-                        <a href="https://github.com/khaliddosari/AutoML" target="_blank" rel="noopener"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://namtheg.khalid-ai.dev/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Demo</a>
-                    </div>
-                </div>
-
-                <!-- Nusuk Card -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Nusuk</h3>
-                    <p>Designed an <b>agentic</b> recommendation system with <b>python</b>, 
-                        <b>Node.js</b>, <b>MongoDB</b>, <b>JavaScript</b>, <b>HTML</b> and 
-                        <b>CSS</b> that parses PDF/text academic transcripts and maps 
-                        historical grade distributions, therefore increasing recommendation 
-                        alignment based on user-specific academic history.
-                    </p>
-
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Node.js</span>
-                        <span class="tag">MongoDB</span>
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">Gemini API</span>
-                    </div>
-
-                    <div class="project-links">
-                        <a href="https://github.com/khaliddosari/web-project" target="_blank" rel="noopener"><i class="fab fa-github"></i> Code</a>
-                        <!--<a href="https://github.com/khaliddosari/web-project" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Demo</a>-->
-                    </div>
-                </div>
-
-                <!-- 3ajib Card -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3>3ajib</h3>
-                    <p> Developed an <b>AI-powered</b> tourism analytics platform for 
-                        the PwC Empowerthon, securing 4th place out of 11 teams. 
-                        Integrated a bilingual AI demo, ROI calculator, and analytics 
-                        dashboard using <b>React</b>, <b>TypeScript</b>, <b>Vite</b>, 
-                        <b>Supabase</b> and <b>JavaScript</b>, it is aimed at helping 
-                        Saudi destination owners turn visitor data into actionable insights with an AI demo, 
-                        ROI calculator, analytics dashboard, and bilingual support.</p>
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">Vite</span>
-                        <span class="tag">Supabase</span>
-                        <span class="tag">Voiceflow</span>
-                        <span class="tag">HTML</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">CSS</span>
-                    </div>
-
-                    <div class="project-links">
-                        <a href="https://github.com/khaliddosari/3ajib" target="_blank" rel="noopener"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://khaliddosari.github.io/3ajib/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Demo</a>
-                    </div>
-                </div>
-
-                <!-- Cash Back Optimizer Card -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3>Cashy - Cash Back Optimizer</h3>
-                    <p>Engineered a credit card cashback optimization algorithm 
-                        in <b>Java</b> to implement and benchmark <b>Brute Force</b> (O(n<sup>m</sup>)) 
-                        against <b>Greedy</b> (O(n*m)) approaches to demonstrate performance 
-                        trade-offs.</p>
-
-                    <div class="project-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">HTML</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">Cloudflare</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/khaliddosari/cashback-optimizer" target="_blank" rel="noopener"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://khaliddosari.github.io/cashback-optimizer/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Demo</a>
-                    </div>
-                </div>
-
-                <!-- N-Queens CSP Card -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="500">
-                    <h3>N-Queens CSP</h3>
-                    <p>Implemented and compared <b>Backtracking</b>, <b>Forward Checking</b>, 
-                        and <b>Maintaining Arc Consistency (MAC)</b> algorithms with <b>Java</b>, 
-                        <b>Spring Boot</b>, <b>Maven</b>, <b>JavaScript</b>, <b>HTML</b> and <b>CSS</b> 
-                        to solve complex Constraint Satisfaction Problems (CSPs).</p>
-                    <div class="project-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">Spring Boot</span>
-                        <span class="tag">Maven</span>
-                        <span class="tag">HTML</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">CSS</span>
-                    </div>
-                    
-                    <div class="project-links">
-                        <a href="https://github.com/khaliddosari/n-queens" target="_blank" rel="noopener"><i class="fab fa-github"></i> Code</a>
-                        <!---<a href="https://n-queens.up.railway.app/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Demo</a>-->
-                    </div>
-                </div>
-
-                <!-- LALR Parser Card -->
-                <div class="project-card" data-aos="fade-up" data-aos-delay="600">
-                    <h3>LALR Parser</h3>
-                    <p>Engineered a deterministic context-free grammar parser with <b>Java</b>, <b>Spring Boot</b>, 
-                        <b>Maven</b>, and <b>JavaScript</b> constructing full canonical LR(1) item sets and 
-                        successfully merges same-core states into a functional LALR table. Containerized the 
-                        backend application using <b>Docker</b> and exposed the parser mechanics via a <b>REST API</b> to a 
-                        custom visualization interface.</p>
-
-                    <div class="project-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">Spring Boot</span>
-                        <span class="tag">Maven</span>
-                        <span class="tag">REST API</span>
-                        <span class="tag">Docker</span>
-                        <span class="tag">HTML</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">CSS</span>
-                    </div>
-
-                    <div class="project-links">
-                        <a href="https://github.com/khaliddosari/lalr-parser" target="_blank" rel="noopener"><i class="fab fa-github"></i> Code</a>
-                        <a href="https://lalr-parser.fly.dev/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Demo</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section class="section section-alt" id="experience">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Experience</h2>
-            <div class="timeline">
-
-                <!-- Council card -->
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="exp-header">
-                            <img src="assets/experience/council-logo.jpg" alt="Company Logo" class="org-logo" onerror="this.style.display='none';">
-                            <div>
-                                <h3>Media & Design Lead</h3>
-                                <p class="exp-company">CCIS Student Advisory Council</p>
+                <article class="entry">
+                    <img src="assets/education/tuwaiqacademy_logo.jpg" alt="Tuwaiq Academy logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                    <div class="entry-main">
+                        <div class="entry-top">
+                            <div class="entry-titles">
+                                <h3 class="entry-title">Tuwaiq Academy</h3>
+                                <p class="entry-sub">Building and Developing AI Models Bootcamp</p>
                             </div>
                         </div>
-                        <p class="exp-dates"><i class="fas fa-calendar-alt"></i> September 2025 - Present</p>
-                        <ul class="exp-responsibilities">
+                        <p class="entry-date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>June 2026 – present</p>
+                        <ul class="bullets prose">
+                            <li>Built a strong foundation in <b>AI</b>, <b>machine learning</b> and <b>deep learning</b> by covering
+                                data handling and deep learning applications in <b>computer vision</b> and <b>NLP</b> using
+                                <b>TensorFlow</b>, <b>PyTorch</b>, and <b>Hugging Face Transformers</b>.</li>
+                            <li>Also Learned cloud based AI services on <b>AWS</b> and <b>Azure</b>, along with <b>MLOps</b> essentials
+                                such as <b>Docker</b> and <b>Git</b> for managing the model lifecycle.</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Imam Card -->
+                <article class="entry">
+                    <img src="assets/education/university-logo.jpg" alt="Imam Mohammad bin Saud Islamic University logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                    <div class="entry-main">
+                        <div class="entry-top">
+                            <div class="entry-titles">
+                                <h3 class="entry-title">Imam Mohammad bin Saud Islamic University</h3>
+                                <p class="entry-sub">Bachelor's degree, Computer Science</p>
+                            </div>
+                        </div>
+                        <p class="entry-date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>August 2022 – present</p>
+                        <ul class="bullets prose">
+                            <li>Built a strong foundation in <b>software engineering</b>, <b>machine learning</b>,
+                                and <b>artificial intelligence</b>, applied directly to deployed projects.</li>
+                            <li><b>Media & Design Leader</b> at the Student Advisory Council and volunteer
+                                at Tuwaiq Club, Google Developers Students Club and Information Security Club.</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="panel experience" id="experience" aria-labelledby="experience-title">
+            <header class="panel-head">
+                <h2 class="panel-title" id="experience-title">Experience</h2>
+            </header>
+            <div class="panel-body entries">
+
+                <!-- Council card -->
+                <article class="entry">
+                    <img src="assets/experience/council-logo.jpg" alt="CCIS Student Advisory Council logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                    <div class="entry-main">
+                        <div class="entry-top">
+                            <div class="entry-titles">
+                                <h3 class="entry-title">Media & Design Lead</h3>
+                                <p class="entry-sub">CCIS Student Advisory Council</p>
+                            </div>
+                        </div>
+                        <p class="entry-date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>September 2025 – Present</p>
+                        <ul class="bullets prose">
                             <li>Managed media and design teams, ensuring alignment with projects goals and objectives. Led regular meetings to discuss progress, assign tasks, and review performance. Set clear KPIs and worked collaboratively to achieve them, enhancing team productivity.</li>
                         </ul>
                     </div>
-                </div>
+                </article>
 
                 <!-- THA card -->
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="exp-header">
-                            <img src="assets/experience/company-logo.jpg" alt="Company Logo" class="org-logo" onerror="this.style.display='none';">
-                            <div>
-                                <h3>Part Time Zone Manager</h3>
-                                <p class="exp-company">THA Staffing</p>
+                <article class="entry">
+                    <img src="assets/experience/company-logo.jpg" alt="THA Staffing logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                    <div class="entry-main">
+                        <div class="entry-top">
+                            <div class="entry-titles">
+                                <h3 class="entry-title">Part Time Zone Manager</h3>
+                                <p class="entry-sub">THA Staffing</p>
                             </div>
                         </div>
-                        <p class="exp-dates"><i class="fas fa-calendar-alt"></i> Jan 2026 - Present</p>
-                        <ul class="exp-responsibilities">
+                        <p class="entry-date"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Jan 2026 – Present</p>
+                        <ul class="bullets prose">
                             <li>Supervised teams of up to 25 members during critical events and conferences. Collaborated with both government and private entities to ensure successful event execution. Developed strong leadership and organizational skills while managing diverse teams.</li>
                         </ul>
                     </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="panel panel-weak projects" id="projects" aria-labelledby="projects-title">
+            <header class="panel-head">
+                <h2 class="panel-title" id="projects-title">Projects</h2>
+            </header>
+            <div class="panel-body">
+                <div class="card-grid projects-grid">
+
+                    <!-- Namtheg Card -->
+                    <article class="card">
+                        <div class="card-top">
+                            <h3 class="card-title">Namtheg AutoML</h3>
+                        </div>
+                        <p class="prose">Developed an end-to-end <b>agentic automated machine learning
+                            pipeline</b> leveraging <b>Python</b>, <b>LangChain</b>, <b>FastAPI</b>, <b>Next.js</b>,
+                            <b>Modal</b>, <b>React</b> and <b>TypeScript</b>; built a full <b>MLOps stack</b>
+                            enabling users to upload raw datasets, train custom models,
+                            and deploy production-ready cloud APIs via Modal.
+                        </p>
+                        <ul class="chips" aria-label="Tech stack">
+                            <li class="chip">Python</li>
+                            <li class="chip">FastAPI</li>
+                            <li class="chip">NEXT.JS</li>
+                            <li class="chip">Modal</li>
+                            <li class="chip">LangChain</li>
+                            <li class="chip">DeepSeek API</li>
+                            <li class="chip">TypeScript</li>
+                            <li class="chip">React</li>
+                            <li class="chip">Render</li>
+                        </ul>
+                        <div class="card-actions">
+                            <a href="https://github.com/khaliddosari/AutoML" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Code<span class="sr-only"> for Namtheg AutoML</span></a>
+                            <a href="https://namtheg.khalid-ai.dev/" target="_blank" rel="noopener" class="btn btn-sm btn-primary"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>Demo<span class="sr-only"> of Namtheg AutoML</span></a>
+                        </div>
+                    </article>
+
+                    <!-- Nusuk Card -->
+                    <article class="card">
+                        <div class="card-top">
+                            <h3 class="card-title">Nusuk</h3>
+                        </div>
+                        <p class="prose">Designed an <b>agentic</b> recommendation system with <b>python</b>,
+                            <b>Node.js</b>, <b>MongoDB</b>, <b>JavaScript</b>, <b>HTML</b> and
+                            <b>CSS</b> that parses PDF/text academic transcripts and maps
+                            historical grade distributions, therefore increasing recommendation
+                            alignment based on user-specific academic history.
+                        </p>
+                        <ul class="chips" aria-label="Tech stack">
+                            <li class="chip">Python</li>
+                            <li class="chip">JavaScript</li>
+                            <li class="chip">Node.js</li>
+                            <li class="chip">MongoDB</li>
+                            <li class="chip">HTML</li>
+                            <li class="chip">CSS</li>
+                            <li class="chip">Gemini API</li>
+                        </ul>
+                        <div class="card-actions">
+                            <a href="https://github.com/khaliddosari/web-project" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Code<span class="sr-only"> for Nusuk</span></a>
+                            <!--<a href="https://github.com/khaliddosari/web-project" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Demo</a>-->
+                        </div>
+                    </article>
+
+                    <!-- 3ajib Card -->
+                    <article class="card">
+                        <div class="card-top">
+                            <h3 class="card-title">3ajib</h3>
+                        </div>
+                        <p class="prose">Developed an <b>AI-powered</b> tourism analytics platform for
+                            the PwC Empowerthon, securing 4th place out of 11 teams.
+                            Integrated a bilingual AI demo, ROI calculator, and analytics
+                            dashboard using <b>React</b>, <b>TypeScript</b>, <b>Vite</b>,
+                            <b>Supabase</b> and <b>JavaScript</b>, it is aimed at helping
+                            Saudi destination owners turn visitor data into actionable insights with an AI demo,
+                            ROI calculator, analytics dashboard, and bilingual support.</p>
+                        <ul class="chips" aria-label="Tech stack">
+                            <li class="chip">React</li>
+                            <li class="chip">TypeScript</li>
+                            <li class="chip">Vite</li>
+                            <li class="chip">Supabase</li>
+                            <li class="chip">Voiceflow</li>
+                            <li class="chip">HTML</li>
+                            <li class="chip">JavaScript</li>
+                            <li class="chip">CSS</li>
+                        </ul>
+                        <div class="card-actions">
+                            <a href="https://github.com/khaliddosari/3ajib" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Code<span class="sr-only"> for 3ajib</span></a>
+                            <a href="https://khaliddosari.github.io/3ajib/" target="_blank" rel="noopener" class="btn btn-sm btn-primary"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>Demo<span class="sr-only"> of 3ajib</span></a>
+                        </div>
+                    </article>
+
+                    <!-- Cash Back Optimizer Card -->
+                    <article class="card">
+                        <div class="card-top">
+                            <h3 class="card-title">Cashy - Cash Back Optimizer</h3>
+                        </div>
+                        <p class="prose">Engineered a credit card cashback optimization algorithm
+                            in <b>Java</b> to implement and benchmark <b>Brute Force</b> (O(n<sup>m</sup>))
+                            against <b>Greedy</b> (O(n*m)) approaches to demonstrate performance
+                            trade-offs.</p>
+                        <ul class="chips" aria-label="Tech stack">
+                            <li class="chip">Java</li>
+                            <li class="chip">HTML</li>
+                            <li class="chip">JavaScript</li>
+                            <li class="chip">CSS</li>
+                            <li class="chip">Cloudflare</li>
+                        </ul>
+                        <div class="card-actions">
+                            <a href="https://github.com/khaliddosari/cashback-optimizer" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Code<span class="sr-only"> for Cashy</span></a>
+                            <a href="https://khaliddosari.github.io/cashback-optimizer/" target="_blank" rel="noopener" class="btn btn-sm btn-primary"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>Demo<span class="sr-only"> of Cashy</span></a>
+                        </div>
+                    </article>
+
+                    <!-- N-Queens CSP Card -->
+                    <article class="card">
+                        <div class="card-top">
+                            <h3 class="card-title">N-Queens CSP</h3>
+                        </div>
+                        <p class="prose">Implemented and compared <b>Backtracking</b>, <b>Forward Checking</b>,
+                            and <b>Maintaining Arc Consistency (MAC)</b> algorithms with <b>Java</b>,
+                            <b>Spring Boot</b>, <b>Maven</b>, <b>JavaScript</b>, <b>HTML</b> and <b>CSS</b>
+                            to solve complex Constraint Satisfaction Problems (CSPs).</p>
+                        <ul class="chips" aria-label="Tech stack">
+                            <li class="chip">Java</li>
+                            <li class="chip">Spring Boot</li>
+                            <li class="chip">Maven</li>
+                            <li class="chip">HTML</li>
+                            <li class="chip">JavaScript</li>
+                            <li class="chip">CSS</li>
+                        </ul>
+                        <div class="card-actions">
+                            <a href="https://github.com/khaliddosari/n-queens" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Code<span class="sr-only"> for N-Queens CSP</span></a>
+                            <!---<a href="https://n-queens.up.railway.app/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Demo</a>-->
+                        </div>
+                    </article>
+
+                    <!-- LALR Parser Card -->
+                    <article class="card">
+                        <div class="card-top">
+                            <h3 class="card-title">LALR Parser</h3>
+                        </div>
+                        <p class="prose">Engineered a deterministic context-free grammar parser with <b>Java</b>, <b>Spring Boot</b>,
+                            <b>Maven</b>, and <b>JavaScript</b> constructing full canonical LR(1) item sets and
+                            successfully merges same-core states into a functional LALR table. Containerized the
+                            backend application using <b>Docker</b> and exposed the parser mechanics via a <b>REST API</b> to a
+                            custom visualization interface.</p>
+                        <ul class="chips" aria-label="Tech stack">
+                            <li class="chip">Java</li>
+                            <li class="chip">Spring Boot</li>
+                            <li class="chip">Maven</li>
+                            <li class="chip">REST API</li>
+                            <li class="chip">Docker</li>
+                            <li class="chip">HTML</li>
+                            <li class="chip">JavaScript</li>
+                            <li class="chip">CSS</li>
+                        </ul>
+                        <div class="card-actions">
+                            <a href="https://github.com/khaliddosari/lalr-parser" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>Code<span class="sr-only"> for LALR Parser</span></a>
+                            <a href="https://lalr-parser.fly.dev/" target="_blank" rel="noopener" class="btn btn-sm btn-primary"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>Demo<span class="sr-only"> of LALR Parser</span></a>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- CERTIFICATIONS -->
-    <section class="section" id="certifications">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Certifications</h2>
-            <div class="certs-grid">
+        <!-- CERTIFICATIONS -->
+        <section class="panel panel-weak certifications" id="certifications" aria-labelledby="certifications-title">
+            <header class="panel-head">
+                <h2 class="panel-title" id="certifications-title">Certifications</h2>
+                <div class="tabs" role="tablist" aria-label="Certificate type">
+                    <button class="tab" type="button" role="tab" id="tab-professional" aria-controls="cert-professional" aria-selected="true">Professional <span class="tab-count" data-count="#cert-professional .card">4</span></button>
+                    <button class="tab" type="button" role="tab" id="tab-courses" aria-controls="cert-courses" aria-selected="false" tabindex="-1">Courses <span class="tab-count" data-count="#cert-courses .card">10</span></button>
+                </div>
+            </header>
+            <div class="panel-body">
+                <div class="card-grid certs-grid" id="cert-professional" role="tabpanel" aria-labelledby="tab-professional">
+                    <!-- Sdaia Professional Training Program in Large Language Models (NVIDIA) -->
+                    <article class="card cert">
+                        <img src="assets/certifications/SDAIA.jpg" alt="SDAIA logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Professional Training Program in Large Language Models (NVIDIA)">Professional Training Program in Large Language Models (NVIDIA)</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">SDAIA</span><span class="cert-date">August 2026</span></p>
+                                <a href="https://athkax.sdaia.gov.sa/certificate-verification?type=Event&id=259&certificate=21349&learner=swager2014@gmail.com" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> Professional Training Program in Large Language Models</span></a>
+                                <!-- <a href="https://drive.google.com/file/d/1n-kGEbe0i4JD9Tsd9fUxFHgQLCtt5Lg3/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                            </div>
+                        </div>
+                    </article>
 
-                <!-- Sdaia Professional Training Program in Large Language Models (NVIDIA) -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="50">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/SDAIA.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Professional Training Program in Large Language Models (NVIDIA)</h3>
-                        <p class="cert-org">SDAIA</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> August 2026</p>
-                        <div class="cert-links">
-                            <a href="https://athkax.sdaia.gov.sa/certificate-verification?type=Event&id=259&certificate=21349&learner=swager2014@gmail.com" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>
-                            <!-- <a href="https://drive.google.com/file/d/1n-kGEbe0i4JD9Tsd9fUxFHgQLCtt5Lg3/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                    <!-- Tuwaiq Building Transformer-Based NLP Applications Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/tuwaiqacademy_logo.jpg" alt="Tuwaiq Academy logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Building Transformer-Based NLP Applications">Building Transformer-Based NLP Applications</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">Tuwaiq Academy</span><span class="cert-date">August 2026</span></p>
+                                <!---<a href="https://drive.google.com/file/d/1GgeKYGsCZBNEomn9CXOxKsVOwsSV8Oml/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a> -->
+                                <a href="https://drive.google.com/file/d/1n-kGEbe0i4JD9Tsd9fUxFHgQLCtt5Lg3/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>PDF<span class="sr-only"> of Building Transformer-Based NLP Applications, Tuwaiq Academy</span></a>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <!-- Tuwaiq Building Transformer-Based NLP Applications Card Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="50">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/tuwaiqacademy_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Building Transformer-Based NLP Applications</h3>
-                        <p class="cert-org">Tuwaiq Academy</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> August 2026</p>
-                        <div class="cert-links">
-                            <!---<a href="https://drive.google.com/file/d/1GgeKYGsCZBNEomn9CXOxKsVOwsSV8Oml/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a> -->
-                            <a href="https://drive.google.com/file/d/1n-kGEbe0i4JD9Tsd9fUxFHgQLCtt5Lg3/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <!-- Nvidia Building Transformer-Based NLP Applications Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/nvidia_logo.jpg" alt="NVIDIA logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Building Transformer-Based NLP Applications">Building Transformer-Based NLP Applications</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">NVIDIA</span><span class="cert-date">August 2026</span></p>
+                                <a href="https://learn.nvidia.com/certificates?id=8GFF8KwBSDafSTLkdvCK_Q" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> Building Transformer-Based NLP Applications, NVIDIA</span></a>
+                                <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Nvidia Building Transformer-Based NLP Applications Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="50">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/nvidia_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Building Transformer-Based NLP Applications</h3>
-                        <p class="cert-org">NVIDIA</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> August 2026</p>
-                        <div class="cert-links">
-                            <a href="https://learn.nvidia.com/certificates?id=8GFF8KwBSDafSTLkdvCK_Q" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>
-                            <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                    </article>
+
+                    <!-- Data Science Bootcamp -->
+                    <article class="card cert">
+                        <img src="assets/certifications/OSS Vision Logo.jpg" alt="OSS Vision Community logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Data Science Bootcamp">Data Science Bootcamp</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">OSS Vision Community</span><span class="cert-date">April 2026</span></p>
+                                <!---<a href="https://drive.google.com/file/d/1JDzUlODcjYjCWmz86O1nj_TVDq4hkk1n/view" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>-->
+                                <a href="https://drive.google.com/file/d/1JDzUlODcjYjCWmz86O1nj_TVDq4hkk1n/view" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>PDF<span class="sr-only"> of Data Science Bootcamp</span></a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Rapid Application Development with LLMs Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="50">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/nvidia_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Rapid Application Development with LLMs</h3>
-                        <p class="cert-org">NVIDIA</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> July 2026</p>
-                        <div class="cert-links">
-                            <a href="https://learn.nvidia.com/certificates?id=2KRyjOvMR_amy4oGQj-k_w" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>
-                            <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
-                        </div>
-                    </div>
+                    </article>
                 </div>
 
-                <!-- Building LLM Applications With Prompt Engineering Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/nvidia_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Building LLM Applications With Prompt Engineering</h3>
-                        <p class="cert-org">NVIDIA</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> July 2026</p>
-                        <div class="cert-links">
-                            <a href="https://learn.nvidia.com/certificates?id=o7O8N4LJRdK1YsR1LgXIUg" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>
-                            <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                <div class="card-grid certs-grid" id="cert-courses" role="tabpanel" aria-labelledby="tab-courses" hidden>
+                    <!-- Rapid Application Development with LLMs Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/nvidia_logo.jpg" alt="NVIDIA logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Rapid Application Development with LLMs">Rapid Application Development with LLMs</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">NVIDIA</span><span class="cert-date">July 2026</span></p>
+                                <a href="https://learn.nvidia.com/certificates?id=2KRyjOvMR_amy4oGQj-k_w" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> Rapid Application Development with LLMs</span></a>
+                                <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <!-- Accelerating End-to-End Data Science Workflows Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="150">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/nvidia_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Accelerating End-to-End Data Science Workflows</h3>
-                        <p class="cert-org">NVIDIA</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> July 2026</p>
-                        <div class="cert-links">
-                            <a href="https://learn.nvidia.com/certificates?id=-UlvGHGNQNyDDs14T4wTXw" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>
-                            <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                    <!-- Building LLM Applications With Prompt Engineering Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/nvidia_logo.jpg" alt="NVIDIA logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Building LLM Applications With Prompt Engineering">Building LLM Applications With Prompt Engineering</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">NVIDIA</span><span class="cert-date">July 2026</span></p>
+                                <a href="https://learn.nvidia.com/certificates?id=o7O8N4LJRdK1YsR1LgXIUg" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> Building LLM Applications With Prompt Engineering</span></a>
+                                <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <!-- Introduction to Transformer-Based Natural Language Processing Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/nvidia_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Introduction to Transformer-Based Natural Language Processing</h3>
-                        <p class="cert-org">NVIDIA</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> June 2026</p>
-                        <div class="cert-links">
-                            <a href="https://learn.nvidia.com/certificates?id=W5S41IDTSuqncL5mgB-B1Q" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>
-                            <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                    <!-- Accelerating End-to-End Data Science Workflows Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/nvidia_logo.jpg" alt="NVIDIA logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Accelerating End-to-End Data Science Workflows">Accelerating End-to-End Data Science Workflows</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">NVIDIA</span><span class="cert-date">July 2026</span></p>
+                                <a href="https://learn.nvidia.com/certificates?id=-UlvGHGNQNyDDs14T4wTXw" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> Accelerating End-to-End Data Science Workflows</span></a>
+                                <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <!-- Getting Started with Deep Learning Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="250">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/nvidia_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Getting Started with Deep Learning</h3>
-                        <p class="cert-org">NVIDIA</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> June 2026</p>
-                        <div class="cert-links">
-                            <a href="https://learn.nvidia.com/certificates?id=J4RiT4gbRsip1ICtoo7e3Q" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>
-                            <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                    <!-- Introduction to Transformer-Based Natural Language Processing Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/nvidia_logo.jpg" alt="NVIDIA logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Introduction to Transformer-Based Natural Language Processing">Introduction to Transformer-Based Natural Language Processing</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">NVIDIA</span><span class="cert-date">June 2026</span></p>
+                                <a href="https://learn.nvidia.com/certificates?id=W5S41IDTSuqncL5mgB-B1Q" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> Introduction to Transformer-Based Natural Language Processing</span></a>
+                                <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- AI-Native Engineering Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/Tuwaiq Club Logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>AI-Native Engineering</h3>
-                        <p class="cert-org">Tuwaiq Club</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> May 2026</p>
-                        <div class="cert-links">
-                            <!---<a href="#" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>-->
-                            <a href="https://drive.google.com/file/d/1d52VoOdhq5DkWfRwbg73nLqvgH0KPoBY/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>
-                        </div>
-                    </div>
-                </div>
+                    </article>
 
-                <!-- Supervised Machine Learning: Regression and Classification Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="350">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/deeplearningai_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Supervised Machine Learning: Regression and Classification</h3>
-                        <p class="cert-org">DeepLearning.AI</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> April 2026</p>
-                        <div class="cert-links">
-                            <a href="https://www.coursera.org/account/accomplishments/verify/7YVPDYKX82FZ" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>
-                            <!---<a href="#" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                    <!-- Getting Started with Deep Learning Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/nvidia_logo.jpg" alt="NVIDIA logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Getting Started with Deep Learning">Getting Started with Deep Learning</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">NVIDIA</span><span class="cert-date">June 2026</span></p>
+                                <a href="https://learn.nvidia.com/certificates?id=J4RiT4gbRsip1ICtoo7e3Q" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> Getting Started with Deep Learning</span></a>
+                                <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <!-- Introduction to Data Science in Python Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/Michigan_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Introduction to Data Science in Python</h3>
-                        <p class="cert-org">University of Michigan</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> April 2026</p>
-                        <div class="cert-links">
-                            <a href="https://www.coursera.org/account/accomplishments/verify/1N08E86IDUM0" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>
-                            <!---<a href="#" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                    <!-- AI-Native Engineering Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/Tuwaiq Club Logo.jpg" alt="Tuwaiq Club logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="AI-Native Engineering">AI-Native Engineering</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">Tuwaiq Club</span><span class="cert-date">May 2026</span></p>
+                                <!---<a href="#" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>-->
+                                <a href="https://drive.google.com/file/d/1d52VoOdhq5DkWfRwbg73nLqvgH0KPoBY/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>PDF<span class="sr-only"> of AI-Native Engineering</span></a>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <!-- Data Science Bootcamp -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="450">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/OSS Vision Logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Data Science Bootcamp</h3>
-                        <p class="cert-org">OSS Vision Community</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> April 2026</p>
-                        <div class="cert-links">
-                            <!---<a href="https://drive.google.com/file/d/1JDzUlODcjYjCWmz86O1nj_TVDq4hkk1n/view" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>-->
-                            <a href="https://drive.google.com/file/d/1JDzUlODcjYjCWmz86O1nj_TVDq4hkk1n/view" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <!-- Supervised Machine Learning: Regression and Classification Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/deeplearningai_logo.jpg" alt="DeepLearning.AI logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Supervised Machine Learning: Regression and Classification">Supervised Machine Learning: Regression and Classification</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">DeepLearning.AI</span><span class="cert-date">April 2026</span></p>
+                                <a href="https://www.coursera.org/account/accomplishments/verify/7YVPDYKX82FZ" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> Supervised Machine Learning: Regression and Classification</span></a>
+                                <!---<a href="#" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <!-- Calculus for Machine Learning and Data Science Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="500">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/deeplearningai_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Calculus for Machine Learning and Data Science</h3>
-                        <p class="cert-org">DeepLearning.AI</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> February 2026</p>
-                        <div class="cert-links">
-                            <a href="https://www.coursera.org/account/accomplishments/verify/J8CSGJADBMCP" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>
-                            <!---<a href="assets/certifications/cert-1.pdf" target="_blank" rel="noopener" class="btn btn-sm btn-outline"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                    <!-- Introduction to Data Science in Python Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/Michigan_logo.jpg" alt="University of Michigan logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Introduction to Data Science in Python">Introduction to Data Science in Python</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">University of Michigan</span><span class="cert-date">April 2026</span></p>
+                                <a href="https://www.coursera.org/account/accomplishments/verify/1N08E86IDUM0" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> Introduction to Data Science in Python</span></a>
+                                <!---<a href="#" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </article>
 
-                <!-- Python Programming Card -->
-                <div class="cert-card" data-aos="fade-up" data-aos-delay="550">
-                    <div class="cert-badge">
-                        <img src="assets/certifications/MCIT_logo.jpg" alt="Certification Badge" onerror="this.src='https://via.placeholder.com/80/1a1a2e/4fc3f7?text=Cert';">
-                    </div>
-                    <div class="cert-info">
-                        <h3>Python Programming</h3>
-                        <p class="cert-org">MCIT</p>
-                        <p class="cert-date"><i class="fas fa-calendar-alt"></i> July 2023</p>
-                        <div class="cert-links">
-                            <!---<a href="#" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>-->
-                            <a href="https://drive.google.com/file/d/1PYDMHToeOsPRG_cN3u7PxfnncZIJheMm/view" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>
+                    <!-- Calculus for Machine Learning and Data Science Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/deeplearningai_logo.jpg" alt="DeepLearning.AI logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Calculus for Machine Learning and Data Science">Calculus for Machine Learning and Data Science</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">DeepLearning.AI</span><span class="cert-date">February 2026</span></p>
+                                <a href="https://www.coursera.org/account/accomplishments/verify/J8CSGJADBMCP" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> Calculus for Machine Learning and Data Science</span></a>
+                                <!---<a href="assets/certifications/cert-1.pdf" target="_blank" rel="noopener" class="btn btn-sm btn-outline"><i class="fas fa-file-pdf"></i> PDF</a>-->
+                            </div>
                         </div>
-                    </div>
+                    </article>
+
+                    <!-- Python Programming Card -->
+                    <article class="card cert">
+                        <img src="assets/certifications/MCIT_logo.jpg" alt="MCIT logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <div class="cert-main">
+                            <h3 class="cert-title" title="Python Programming">Python Programming</h3>
+                            <div class="cert-foot">
+                                <p class="cert-meta"><span class="cert-org">MCIT</span><span class="cert-date">July 2023</span></p>
+                                <!---<a href="#" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Verify</a>-->
+                                <a href="https://drive.google.com/file/d/1PYDMHToeOsPRG_cN3u7PxfnncZIJheMm/view" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg>PDF<span class="sr-only"> of Python Programming</span></a>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- SKILLS -->
-    <section class="section section-alt" id="skills">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Skills</h2>
-            <div class="skills-container">
+        <!-- SKILLS -->
+        <section class="panel skills" id="skills" aria-labelledby="skills-title">
+            <header class="panel-head">
+                <h2 class="panel-title" id="skills-title">Skills</h2>
+            </header>
+            <div class="panel-body skill-rows">
 
-                <div class="skill-group" data-aos="fade-up" data-aos-delay="100">
-                    <h3>AI & Machine Learning</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Data Science</span>
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">LLMs</span>
-                        <span class="skill-tag">Deep Learning</span>
-                        <span class="skill-tag">Computer Vision</span>
-                        <span class="skill-tag">MLOps</span>
-                        <span class="skill-tag">CNNs</span>
-                        <span class="skill-tag">RNNs</span>
-                        <span class="skill-tag">RAG</span>
-                        <span class="skill-tag">Agentic Workflows</span>
-                        <span class="skill-tag">AI-Native Engineering</span>
-                        <span class="skill-tag">Transformers</span>
-                        <span class="skill-tag">Prompt Engineering</span>
-                        <span class="skill-tag">Reinforcement Learning</span>
-
-                    </div>
+                <div class="skill-row">
+                    <h3 class="skill-label">AI & Machine Learning</h3>
+                    <ul class="chips">
+                        <li class="chip">Data Science</li>
+                        <li class="chip">Machine Learning</li>
+                        <li class="chip">LLMs</li>
+                        <li class="chip">Deep Learning</li>
+                        <li class="chip">Computer Vision</li>
+                        <li class="chip">MLOps</li>
+                        <li class="chip">CNNs</li>
+                        <li class="chip">RNNs</li>
+                        <li class="chip">RAG</li>
+                        <li class="chip">Agentic Workflows</li>
+                        <li class="chip">AI-Native Engineering</li>
+                        <li class="chip">Transformers</li>
+                        <li class="chip">Prompt Engineering</li>
+                        <li class="chip">Reinforcement Learning</li>
+                    </ul>
                 </div>
 
-                <div class="skill-group" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Libraries, Tools & Frameworks</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">PyTorch</span>
-                        <span class="skill-tag">TensorFlow</span>
-                        <span class="skill-tag">NumPy</span>
-                        <span class="skill-tag">Scikit-learn</span>
-                        <span class="skill-tag">LangChain</span>
-                        <span class="skill-tag">LangGraph</span>
-                        <span class="skill-tag">FastAPI</span>
-                        <span class="skill-tag">RestAPI</span>
-                        <span class="skill-tag">Next.js</span>
-                        <span class="skill-tag">Pandas</span>
-                        <span class="skill-tag">Matplotlib</span>
-                        <span class="skill-tag">CUDA</span>
-                        <span class="skill-tag">CloudFlare</span>
-                        <span class="skill-tag">Power BI</span>
-                        <span class="skill-tag">Excel</span>
-                    </div>
+                <div class="skill-row">
+                    <h3 class="skill-label">Libraries, Tools & Frameworks</h3>
+                    <ul class="chips">
+                        <li class="chip">PyTorch</li>
+                        <li class="chip">TensorFlow</li>
+                        <li class="chip">NumPy</li>
+                        <li class="chip">Scikit-learn</li>
+                        <li class="chip">LangChain</li>
+                        <li class="chip">LangGraph</li>
+                        <li class="chip">FastAPI</li>
+                        <li class="chip">RestAPI</li>
+                        <li class="chip">Next.js</li>
+                        <li class="chip">Pandas</li>
+                        <li class="chip">Matplotlib</li>
+                        <li class="chip">CUDA</li>
+                        <li class="chip">CloudFlare</li>
+                        <li class="chip">Power BI</li>
+                        <li class="chip">Excel</li>
+                    </ul>
                 </div>
 
-                <div class="skill-group" data-aos="fade-up" data-aos-delay="300">
-                    <h3>Soft Skills</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Leadership</span>
-                        <span class="skill-tag">Project Management</span>
-                        <span class="skill-tag">Communication Skills</span>
-                        <span class="skill-tag">Problem Solving</span>
-                        <span class="skill-tag">Team Management</span>
-                        <span class="skill-tag">Teamwork</span>
-                    </div>
+                <div class="skill-row">
+                    <h3 class="skill-label">Soft Skills</h3>
+                    <ul class="chips">
+                        <li class="chip">Leadership</li>
+                        <li class="chip">Project Management</li>
+                        <li class="chip">Communication Skills</li>
+                        <li class="chip">Problem Solving</li>
+                        <li class="chip">Team Management</li>
+                        <li class="chip">Teamwork</li>
+                    </ul>
                 </div>
 
-                <div class="skill-group" data-aos="fade-up" data-aos-delay="400">
-                    <h3>DevOps, & Environments</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">Bash</span>
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">Maven</span>
-                        <span class="skill-tag">Jupyter</span>
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">Google Colab</span>
-                    </div>
+                <div class="skill-row">
+                    <h3 class="skill-label">DevOps & Environments</h3>
+                    <ul class="chips">
+                        <li class="chip">Git</li>
+                        <li class="chip">GitHub</li>
+                        <li class="chip">Bash</li>
+                        <li class="chip">Docker</li>
+                        <li class="chip">Spring Boot</li>
+                        <li class="chip">Maven</li>
+                        <li class="chip">Jupyter</li>
+                        <li class="chip">VS Code</li>
+                        <li class="chip">Google Colab</li>
+                    </ul>
                 </div>
 
-                <div class="skill-group" data-aos="fade-up" data-aos-delay="500">
-                    <h3>Programming Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">SQL</span>
-                    </div>
+                <div class="skill-row">
+                    <h3 class="skill-label">Programming Languages</h3>
+                    <ul class="chips">
+                        <li class="chip">Python</li>
+                        <li class="chip">Java</li>
+                        <li class="chip">HTML</li>
+                        <li class="chip">CSS</li>
+                        <li class="chip">JavaScript</li>
+                        <li class="chip">TypeScript</li>
+                        <li class="chip">SQL</li>
+                    </ul>
                 </div>
 
-                <div class="skill-group" data-aos="fade-up" data-aos-delay="600">
-                    <h3>Cloud & Databases</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Modal</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- LANGUAGES -->
-    <section class="section" id="languages">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Languages</h2>
-            <div class="languages-grid" data-aos="fade-up" data-aos-delay="100">
-
-                <div class="language-card">
-                    <span class="language-name">Arabic</span>
-                </div>
-
-                <div class="language-card">
-                    <span class="language-name">English</span>
+                <div class="skill-row">
+                    <h3 class="skill-label">Cloud & Databases</h3>
+                    <ul class="chips">
+                        <li class="chip">Modal</li>
+                        <li class="chip">PostgreSQL</li>
+                        <li class="chip">MySQL</li>
+                        <li class="chip">MongoDB</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-social">
-                <a href="assets/Khalid_Al_Dosari_AI_Engineer.pdf" target="_blank" rel="noopener" aria-label="CV / Resume">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width: 1em; height: 1em; vertical-align: -0.125em;">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <circle cx="8" cy="7" r="1.5"></circle>
-                        <path d="M5 12a3 3 0 0 1 6 0"></path>
-                        <line x1="13" y1="11" x2="18" y2="11"></line>
-                        <line x1="6" y1="15" x2="18" y2="15"></line>
-                        <line x1="6" y1="18" x2="18" y2="18"></line>
-                    </svg>
-                </a>
-                <a href="mailto:khaliddosari70@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+966553225155" aria-label="Phone"><i class="fas fa-phone"></i></a>
-                <a href="https://www.linkedin.com/in/khalid-al-dosari/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/khaliddosari" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            </div>
-            <p class="footer-copy">&copy; 2026 Khalid Al Dosari. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="assets/Khalid_Al_Dosari_AI_Engineer.pdf" target="_blank" rel="noopener" class="btn btn-ghost btn-icon" aria-label="CV / Resume" title="CV / Resume"><svg class="icon" aria-hidden="true"><use href="#i-cv"/></svg></a>
+            <a href="mailto:khaliddosari70@gmail.com" class="btn btn-ghost btn-icon" aria-label="Email" title="Email"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></a>
+            <a href="tel:+966553225155" class="btn btn-ghost btn-icon" aria-label="Phone" title="Phone"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></a>
+            <a href="https://www.linkedin.com/in/khalid-al-dosari/" target="_blank" rel="noopener" class="btn btn-ghost btn-icon" aria-label="LinkedIn" title="LinkedIn"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+            <a href="https://github.com/khaliddosari" target="_blank" rel="noopener" class="btn btn-ghost btn-icon" aria-label="GitHub" title="GitHub"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a>
         </div>
+        <p>&copy; 2026 Khalid Al Dosari. All rights reserved.</p>
     </footer>
 
-    <!-- AOS JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <!-- Main JS -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
