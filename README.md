@@ -1,4 +1,4 @@
-# Khalid Al Dosari — Portfolio
+# Khalid Al Dosari's Portfolio
 
 My personal portfolio: projects, experience, certifications and skills. Live at [khalid-ai.dev](https://khalid-ai.dev).
 
