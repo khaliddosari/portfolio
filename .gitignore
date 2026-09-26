@@ -12,3 +12,6 @@ Liquid Glass-Portfolio Design System/
 !.dev.vars.example
 .env*
 !.env.example
+
+# local copy of the retired light share image
+/og-image-light.jpg

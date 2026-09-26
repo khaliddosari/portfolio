@@ -12,8 +12,8 @@ start of a new AI session (Claude, ChatGPT, Cursor, etc.) so any tool has full, 
 
 ## 1. Quick Brief (TL;DR)
 
-**What it is:** a single-page "navy glass" static portfolio with a **day theme** (light navy glass)
-and a **night theme** (the original dark palette), built as vanilla HTML/CSS/JS with
+**What it is:** a single-page glass static portfolio with **one dark theme** (the original
+near-black palette), built as vanilla HTML/CSS/JS with
 **no build step, no framework**, hosted on **Cloudflare via Wrangler**. Everything that ships lives
 in `static/`. Sections: Profile, About (with Languages in its facts), Education, Experience,
 Projects, Certifications, Skills.
@@ -29,8 +29,8 @@ Custom brand fonts (Thmanyah) are served from a **separate GitHub repo via jsDel
   components).
 - ✅ Keep contact info identical across the profile panel, About facts, and page footer; keep the
   bilingual (Arabic + English) identity.
-- ✅ **Both themes share one component system.** Components read semantic tokens only; a colour
-  change goes in the day or night token block, never in a component.
+- ✅ **Dark only.** The light theme and its toggle were removed in September 2026. Components read
+  semantic tokens only; a colour change goes in the palette token block, never in a component.
 - ✅ One tag class: `.chip`, for project tech stacks and skills alike.
 - ⚠️ Known wording inconsistency: hero/header say "AI Engineer" but `<head>` meta/OG tags still
   say "ML & AI Engineer". Don't silently change meta tags — confirm first.
@@ -49,11 +49,11 @@ linkedin.com/in/khalid-al-dosari · github.com/khaliddosari
 
 A **single-page personal portfolio website** for Khalid Al Dosari — a senior Computer Science
 student presenting himself as a **Data Scientist / AI Engineer**. One scrolling page with anchor
-navigation, day and night themes, "navy glass" aesthetic, bilingual touches (English + Arabic).
+navigation, a dark glass aesthetic, bilingual touches (English + Arabic).
 
 **Owner / subject**
 - **Name:** Khalid Al Dosari — خالد آل دوســـــري
-- **Hero tagline:** `CS Student | Data Scientist | AI Engineer`
+- **Hero tagline:** `NCA-GENL | AI Engineer` / `Tuwaiq Academy Alumnus`
 - **Sidebar tagline (shorter):** `Data Scientist | AI Engineer`
 - **University:** Imam Mohammad bin Saud Islamic University (IMSIU), senior CS student
   (Bachelor's, Computer Science, August 2022 – present)
@@ -110,7 +110,7 @@ Portfolio/                     <- git repo root
 └─ static/                     <- everything that gets deployed
    ├─ index.html               <- the whole page
    ├─ styles.css               <- all styling + design tokens
-   ├─ script.js                <- theme toggle, active nav, panel counts, scroll restore
+   ├─ script.js                <- tabs, active nav, panel counts, scroll restore
    ├─ favicon.ico
    ├─ logo.png                 <- brand logo used by navbar + side menu (HTML references "logo.png")
    └─ assets/
@@ -135,9 +135,7 @@ Portfolio/                     <- git repo root
   `"assets": { "directory": "static" }`. Only the `static/` folder is deployed.
 - All internal links in `index.html`/`styles.css` are **relative** (`styles.css`, `assets/photo.jpg`).
   No leading-slash absolute paths — keep the site path-portable.
-- A small inline `<script>` in `<head>` sets `data-theme` on `<html>` before first paint (stored
-  choice, else the system setting). Keep it inline and before the stylesheet, or the page flashes
-  the wrong theme. `script.js` loads with `defer`.
+- `script.js` loads with `defer`. There is no inline script in `<head>`.
 
 ---
 
@@ -148,39 +146,34 @@ Portfolio/                     <- git repo root
 > All tokens are CSS custom properties in `static/styles.css`.
 > **Always use the token, never hardcode** a raw value a token already covers.
 
-**Two themes, one component system.** `<html data-theme="light|dark">` picks the palette. Every
-component reads the same semantic tokens, so a button, panel or chip has the same shape, size,
-weight and spacing in both themes; only colour changes. The toggle is the sun/moon button in the
-header. First visit follows the system setting; a click is stored in `localStorage` (`theme`).
+**One theme: dark.** The palette is the original portfolio's: `#0a0a0f` background, `#e8e8ed` /
+`#c4c4d0` text, `#4fc3f7 → #0288d1` accent, white-alpha glass, cyan/blue/purple glow. It lives in
+the `/* PALETTE */` `:root` block (`color-scheme: dark`); every component reads its semantic tokens.
+`<meta name="theme-color">` is `#0a0a0f`.
 
-| Theme | Look | Source |
-|-------|------|--------|
-| Day (`:root`) | Light navy glass: translucent white panels over a navy/sky/indigo wash, hue 250–264 everywhere | the skill's `theme.css` |
-| Night (`:root[data-theme="dark"]`) | The original portfolio: `#0a0a0f` background, `#e8e8ed` / `#9999a8` text, `#4fc3f7 → #0288d1` accent, white-alpha glass, cyan/blue/purple glow | the pre-redesign tokens |
-
-**Semantic tokens** (defined in both theme blocks)
-| Token | Day | Night | Use |
-|-------|-----|-------|-----|
-| `--background` | `oklch(0.975 0.01 250)` | `#0a0a0f` | Page |
-| `--foreground` | `oklch(0.16 0.045 258)` | `#e8e8ed` | Headings, emphasis, `<b>` in prose |
-| `--muted-foreground` | `oklch(0.36 0.045 258)` | `#9999a8` | Body copy, labels, dates |
-| `--primary` | navy `oklch(0.3 0.105 262)` | `#4fc3f7` | Tab underline, org/degree lines, skill labels |
-| `--primary-fill` | navy gradient | `linear-gradient(135deg, #4fc3f7, #0288d1)` | Primary buttons |
-| `--primary-foreground` | near-white | `#000` | Text on primary buttons |
-| `--tint` / `--tint-foreground` / `--tint-edge` | pale navy / navy | cyan 18→6% / `#4fc3f7` / cyan 20% | Secondary buttons, chips, active nav |
-| `--hover` | pale navy | `rgba(255,255,255,0.08)` | Ghost/outline hover |
-| `--panel` / `--panel-weak` / `--card` | white 66% / 36% / 66% | white-alpha gradients 8→2% / 4→1% / 8→2% | Glass surfaces |
-| `--glass-edge`, `--glass-highlight`, `--glass-shadow`, `--card-shadow`, `--glass-blur` | white edge, navy shadow | white 12% edge, inset highlights, black shadow | The glass recipe |
-| `--border`, `--divider`, `--ring` | navy alphas | white alphas, cyan ring | Hairlines, focus |
-| `--wash`, `--wash-filter` | four navy/sky/indigo pools | the original four cyan/blue/purple glows + `blur(40px)` | `body::before` |
+**Semantic tokens**
+| Token | Value | Use |
+|-------|-------|-----|
+| `--background` | `#0a0a0f` | Page |
+| `--foreground` | `#e8e8ed` | Headings, emphasis, `<b>` in prose |
+| `--muted-foreground` | `#c4c4d0` | Body copy, labels, dates |
+| `--primary` | `#4fc3f7` | Tab underline, org/degree lines, skill labels |
+| `--primary-fill` | `linear-gradient(135deg, #4fc3f7, #0288d1)` | Primary buttons |
+| `--primary-foreground` | `#000` | Text on primary buttons |
+| `--tint` / `--tint-foreground` / `--tint-edge` | cyan 18→6% / `#4fc3f7` / cyan 20% | Secondary buttons, chips, active nav |
+| `--hover` | `rgba(255,255,255,0.08)` | Ghost/outline hover |
+| `--panel` / `--panel-weak` / `--card` | white-alpha gradients 8→2% / 4→1% / 8→2% | Glass surfaces |
+| `--glass-edge`, `--glass-highlight`, `--glass-shadow`, `--card-shadow`, `--glass-blur` | white 12% edge, inset highlights, black shadow | The glass recipe |
+| `--border`, `--divider`, `--ring` | white alphas, cyan ring | Hairlines, focus |
+| `--wash`, `--wash-filter` | four cyan/blue/purple glows + `blur(40px)` | `body::before` |
 
 The **wash** (`body::before`, fixed) is what the glass blurs. Don't remove it; panels look like flat
 boxes without it. Fallbacks for `prefers-reduced-transparency` and for browsers without
 `backdrop-filter` make surfaces nearly opaque; keep them.
 
 **Typography:** Thmanyah Sans is the whole UI (it carries Arabic and Latin). Weights loaded: 400,
-500, 700. Thmanyah Serif Display Black (`--font-brand`) is used only for the header wordmark and the
-Arabic name. Mono (`--font-mono`, system stack) for the tab counts. Scale is
+500, 700. Thmanyah Serif Display Black (`--font-brand`) is used only for the Arabic name. The
+tab counts use the same font and size as the tab labels. Scale is
 one step up from Tailwind: `--text-xs` 13px, `--text-sm` 15px (body default), `--text-base` 17px.
 Headings and buttons get Thmanyah's alternate letterforms (`--ornate`); body text does not.
 
@@ -204,10 +197,10 @@ width `--page-max` 105rem. Controls are 40px tall on touch, 32px with a mouse fr
 - **Panel:** `section.panel` > `header.panel-head` (`h2.panel-title`, no
   count) + `.panel-body`. A panel that holds cards adds `.panel-weak` so only
   the inner cards are full-strength glass.
-- **Card:** `article.card` inside `.card-grid` (`.projects-grid`, `.certs-grid`).
+- **Card:** `article.card` inside `.card-grid` (`.projects-grid`, `.certs-grid`, `.certs-fill`).
 - **Chip:** `li.chip` inside `ul.chips`: project tech stacks and skills.
-- **Header:** `.site-header` > `.brand` (`.brand-tile` + `.brand-name`), `nav.site-nav` >
-  `.nav-link` (`.is-active`), `.header-actions` (`#themeToggle`, CV button).
+- **Header:** `.site-header` > `.brand` (`.brand-tile`, logo only), `nav.site-nav` >
+  `.nav-link` (`.is-active`), `.header-actions` (CV button).
 - **Profile:** `#hero.panel.profile` > `.profile-id` (`.avatar`, `.name-ar`, `h1.name-en`,
   `.profile-role`) + `.profile-actions` (`.contact-links`).
 - **About:** `#about` > `.about-text` + `dl.facts` > `.fact` (dt/dd). `#languages` is the Languages
@@ -219,15 +212,20 @@ width `--page-max` 105rem. Controls are 40px tall on touch, 32px with a mouse fr
   `.panel-head` > `button.tab[role=tab]` (`aria-selected`, `aria-controls`, `.tab-count`); each
   panel is a `[role=tabpanel]`, the inactive one `hidden`. The active tab's underline sits on the
   header divider. On phones the tabs take their own full-width row.
-- **Certifications:** two tab panels, `#cert-professional` and `#cert-courses` (both `.certs-grid`),
-  each holding `article.card.cert` > `img.logo-tile` + `.cert-main` (`h3.cert-title`,
-  `.cert-foot` > `.cert-meta` (`.cert-org`, `.cert-date`) + Verify/PDF button).
+- **Certifications:** two tab panels, `#cert-professional` (`.certs-fill`) and `#cert-courses`
+  (`.certs-grid`), each holding `article.card.cert` > `img.logo-tile` + `.cert-main`
+  (`h3.cert-title`, `.cert-foot` > `.cert-meta` (`.cert-org`, `.cert-date`) + Verify/PDF button).
+  `.certs-grid` is a fixed-column grid (1/2/3/4/5 columns by width). `.certs-fill` is a wrapping
+  flex row: each card's basis is one column's share (`--cols`: 1/2/3/4, never more than four) and it
+  can grow, so every line, the last included, fills the full width whatever the card count. Add or
+  remove a Professional card and the layout adjusts on its own. Each `.certs-fill` card is a size
+  container (`container-type: inline-size`) and its `.logo-tile` is sized in `cqw`: 2.75rem (the
+  normal size) as the minimum for cards up to about 24rem wide, growing to 5rem for wider ones.
 - **Skills:** `.panel-body.skill-rows` > `.skill-row` > `h3.skill-label` + `ul.chips`.
 - **Footer:** `.site-footer` > `.footer-links` (start side) + copyright (end side).
 - **Prose:** `.prose` = muted body copy with `<b>` lifted to full contrast.
 - **Icons:** `<svg class="icon"><use href="#i-mail"/></svg>`; symbols: `i-cv`, `i-mail`, `i-phone`,
-  `i-linkedin`, `i-github`, `i-external`, `i-arrow`, `i-calendar`, `i-verify`, `i-file`, `i-sun`,
-  `i-moon`.
+  `i-linkedin`, `i-github`, `i-external`, `i-arrow`, `i-calendar`, `i-verify`, `i-file`.
 
 **Motion:** nearly none, by design. Colour transitions on hover only. No scroll reveals, no hover
 lifts, no animated indicators.
@@ -249,8 +247,6 @@ lifts, no animated indicators.
 `script.js` (vanilla, no dependencies, `defer`) handles:
 - **Scroll restoration:** manual; resets to top on fresh load, restores position on reload
   (via `sessionStorage`).
-- **Theme:** `#themeToggle` flips `data-theme`, stores the choice, updates `aria-pressed` and
-  `<meta name="theme-color">`. Until a choice is stored, it follows system changes.
 - **Tab counts:** any `[data-count="<selector>"]` shows how many elements match, so adding a
   certificate updates its tab.
 - **Tabs:** any `[role=tablist]` switches its panels on click, Left/Right arrows (following the
@@ -277,18 +273,25 @@ Header nav order: About · Education & Experience (one link, to `#education`) ·
 - `meta author`: Khalid
 - `og:title`: "Khalid - CS Student | **ML & AI Engineer**"
 - `og:description`: "Portfolio showcasing projects, experience, and skills in ML & AI Engineering."
+- `og:image` / `twitter:image`: `static/og-image.jpg`, 2400×1260 JPEG (1200×630 rendered at 2×, ~210 KB). The profile card (photo,
+  Arabic + English name, role) in the site's dark glass. Keep it under ~300 KB or WhatsApp may drop it.
 
 > ⚠️ **Inconsistency:** hero/side menu say **"AI Engineer"**, but `<head>` meta/OG tags still say
 > **"ML & AI Engineer"**. For full consistency these should be updated too — confirm before editing.
 
-**Header (sticky):** logo (`logo.png`) on a dark brand tile + wordmark **Khalid Al Dosari**,
-section links, theme toggle, CV button. No hamburger or side drawer: on phones the links scroll
+**Header (sticky):** logo (`logo.png`) on a dark brand tile, no wordmark (the link keeps
+`aria-label="Khalid Al Dosari, back to top"`), section links, CV button. No hamburger or side drawer: on phones the links scroll
 sideways inside the header.
 
 **Profile (`#hero`):** portrait `assets/mypic.jpeg` (hidden via `onerror` if it fails); Arabic name
-**خالد آل دوســـــري**; English name **Khalid Al Dosari** (the page `h1`); tagline **CS Student |
+**خالد آل دوســـــري**; English name **Khalid Al Dosari** (the page `h1`); tagline **NCA-GENL |
 AI Engineer / Tuwaiq Academy Alumnus**; CTA "View My Work" → `#projects`; CV; icon buttons for
 email, phone, LinkedIn, GitHub.
+
+The four name/tagline lines are fitted to the English name's width so they sit flush on both sides
+(`.name-ar` scale, `.profile-role` size, `.role-sep` margin, small `translate` nudges). Every size is
+a multiple of `--name-size` on `.profile-names`; change that, not the individual sizes. **Changing
+any of that text breaks the fit**, so re-measure and re-tune those values. `og-image.jpg` mirrors this card.
 
 **About (`#about`) — two paragraphs:**
 1. Senior CS student at IMSIU building toward AI/ML engineering; solid theoretical foundation via
@@ -436,9 +439,8 @@ HTML/CSS/JS, images, favicon, logo, and CV.
 
 **CSS**
 - Custom properties for all theme values; organize by existing comment sections
-  (`/* SHARED TOKENS */`, `/* DAY */`, `/* NIGHT */`, `/* BUTTONS */`, `/* PANELS */`, …).
-- A new colour is a token defined in **both** the day and night blocks; components never branch on
-  theme.
+  (`/* SHARED TOKENS */`, `/* PALETTE */`, `/* BUTTONS */`, `/* PANELS */`, …).
+- A new colour is a token in the `/* PALETTE */` block; components never hardcode it.
 - Descriptive-kebab class names (`.cert-title`, `.panel-head`, `.skill-row`).
 - Prefer extending existing component classes over inventing parallel ones.
 - Glass surfaces: `background: var(--panel|--card)` + `box-shadow: 0 0 0 1px var(--glass-edge),

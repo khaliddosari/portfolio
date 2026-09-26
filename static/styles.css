@@ -1,14 +1,11 @@
 /* =========================================================================
    Khalid Al Dosari · Portfolio
 
-   Navy glass (the navy-glass-ui skill), ported to plain CSS because this
-   site has no build step. Two palettes, one component system:
+   Glass UI in plain CSS, because this site has no build step. One dark
+   palette: the original portfolio colours, near-black with a cyan to blue
+   accent.
 
-     day    the skill's light navy glass
-     night  the original portfolio colours: near-black, cyan to blue accent
-
-   Components below read the semantic tokens only. A button, panel or chip
-   is the same shape, size and weight in both themes; only colour moves.
+   Components below read the semantic tokens only.
    To change a colour, change a token, never a component.
    ========================================================================= */
 
@@ -45,11 +42,10 @@
     font-display: swap;
 }
 
-/* SHARED TOKENS: type, shape, spacing. Identical in both themes. */
+/* SHARED TOKENS: type, shape, spacing. */
 :root {
     --font-sans: "Thmanyah Sans", system-ui, sans-serif;
     --font-brand: "Thmanyah Serif Display", "Thmanyah Sans", serif;
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Thmanyah Sans", monospace;
     /* Thmanyah's alternate letterforms, for headings and buttons only */
     --ornate: "ss01", "ss03", "ss04", "ss05", "ss06", "ss07", "ss08", "salt", "swsh", "dlig", "frac";
 
@@ -76,62 +72,13 @@
     --control-h-sm: 2.25rem;
 }
 
-/* DAY: light navy glass. Hue 250-264 everywhere, surfaces translucent on purpose. */
+/* PALETTE: near-black, cyan to blue accent, white-alpha glass. */
 :root {
-    color-scheme: light;
-
-    --background: oklch(0.975 0.01 250);
-    --foreground: oklch(0.16 0.045 258);
-    --muted-foreground: oklch(0.36 0.045 258);
-
-    --primary: oklch(0.3 0.105 262);
-    --primary-fill: linear-gradient(135deg, oklch(0.37 0.12 260), oklch(0.28 0.1 264));
-    --primary-foreground: oklch(0.98 0.008 250);
-    --primary-shadow: inset 0 1px 0 oklch(1 0 0 / 0.16), 0 1px 2px oklch(0.28 0.09 262 / 0.18), 0 6px 16px -8px oklch(0.28 0.09 262 / 0.5);
-    --primary-shadow-hover: inset 0 1px 0 oklch(1 0 0 / 0.22), 0 1px 2px oklch(0.28 0.09 262 / 0.18), 0 10px 22px -8px oklch(0.28 0.09 262 / 0.6);
-
-    --tint: oklch(0.92 0.03 252 / 0.9);
-    --tint-hover: oklch(0.88 0.045 254 / 0.95);
-    --tint-foreground: oklch(0.25 0.09 262);
-    --tint-edge: oklch(0.5 0.06 258 / 0.18);
-    --hover: oklch(0.91 0.04 252 / 0.85);
-
-    --border: oklch(0.5 0.06 258 / 0.26);
-    --divider: oklch(0.3 0.105 262 / 0.12);
-    --ring: oklch(0.45 0.1 260);
-    --selection: oklch(0.45 0.1 260 / 0.2);
-
-    --panel: oklch(1 0 0 / 0.66);
-    --panel-weak: oklch(1 0 0 / 0.36);
-    --card: oklch(1 0 0 / 0.66);
-    --card-hover: oklch(1 0 0 / 0.82);
-    --glass-edge: oklch(1 0 0 / 0.7);
-    --glass-highlight: 0 0 #0000;
-    --glass-shadow: 0 1px 2px oklch(0.28 0.09 262 / 0.06), 0 12px 36px -14px oklch(0.28 0.09 262 / 0.3);
-    --card-shadow: 0 1px 2px oklch(0.28 0.09 262 / 0.06), 0 8px 20px -12px oklch(0.28 0.09 262 / 0.28);
-    --glass-blur: blur(24px) saturate(1.5);
-
-    --header-bg: oklch(0.975 0.01 250 / 0.65);
-    --header-edge: oklch(0.3 0.105 262 / 0.1);
-    --header-blur: blur(24px) saturate(1.5);
-    --brand-tile: linear-gradient(135deg, oklch(0.37 0.12 260), oklch(0.24 0.09 264));
-    --avatar-ring: 0 0 0 1px oklch(1 0 0 / 0.9), 0 0 0 4px oklch(1 0 0 / 0.45), 0 14px 30px -14px oklch(0.28 0.09 262 / 0.55);
-
-    --wash:
-        radial-gradient(50rem 34rem at 6% -10%, oklch(0.62 0.14 258 / 0.5), transparent 60%),
-        radial-gradient(44rem 32rem at 100% 4%, oklch(0.7 0.11 232 / 0.42), transparent 62%),
-        radial-gradient(46rem 40rem at 88% 96%, oklch(0.42 0.13 264 / 0.3), transparent 62%),
-        radial-gradient(38rem 34rem at 22% 88%, oklch(0.66 0.12 272 / 0.26), transparent 64%);
-    --wash-filter: none;
-}
-
-/* NIGHT: the original portfolio palette, mapped onto the same tokens. */
-:root[data-theme="dark"] {
     color-scheme: dark;
 
     --background: #0a0a0f;
     --foreground: #e8e8ed;
-    --muted-foreground: #9999a8;
+    --muted-foreground: #c4c4d0;
 
     --primary: #4fc3f7;
     --primary-fill: linear-gradient(135deg, #4fc3f7, #0288d1);
@@ -184,12 +131,6 @@
    text sitting directly on the gradient. */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
     :root {
-        --panel: oklch(1 0 0 / 0.95);
-        --panel-weak: oklch(0.99 0.005 250 / 0.9);
-        --card: oklch(1 0 0 / 0.95);
-        --header-bg: oklch(0.975 0.01 250 / 0.97);
-    }
-    :root[data-theme="dark"] {
         --panel: #17171d;
         --panel-weak: #121217;
         --card: #1c1c22;
@@ -199,12 +140,6 @@
 
 @media (prefers-reduced-transparency: reduce) {
     :root {
-        --panel: oklch(1 0 0 / 0.97);
-        --panel-weak: oklch(0.99 0.005 250 / 0.94);
-        --card: oklch(1 0 0 / 0.97);
-        --header-bg: oklch(0.975 0.01 250 / 0.98);
-    }
-    :root[data-theme="dark"] {
         --panel: #17171d;
         --panel-weak: #121217;
         --card: #1c1c22;
@@ -517,16 +452,6 @@ button {
     height: 1.75rem;
 }
 
-.brand-name {
-    display: none;
-    font-family: var(--font-brand);
-    font-size: var(--text-base);
-    font-weight: 900;
-    line-height: 1;
-    font-feature-settings: var(--ornate);
-    white-space: nowrap;
-}
-
 /* Phones: the section links become one scrolling strip inside the header,
    so the header stays a single sticky row. */
 .site-nav {
@@ -585,16 +510,6 @@ button {
     display: none;
 }
 
-/* the toggle shows where it will take you */
-.theme-toggle .icon-sun,
-:root[data-theme="dark"] .theme-toggle .icon-moon {
-    display: none;
-}
-
-:root[data-theme="dark"] .theme-toggle .icon-sun {
-    display: block;
-}
-
 @media (min-width: 40rem) {
     .header-cv {
         display: inline-flex;
@@ -602,10 +517,6 @@ button {
 }
 
 @media (min-width: 64rem) {
-    .brand-name {
-        display: block;
-    }
-
     .site-nav {
         -webkit-mask-image: none;
                 mask-image: none;
@@ -770,8 +681,7 @@ button {
 }
 
 .tab-count {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
+    font-size: 1em;
     font-weight: 500;
     color: var(--muted-foreground);
 }
@@ -817,6 +727,14 @@ button {
     box-shadow: 0 0 0 1px var(--border);
 }
 
+/* transparent badge art: no white tile or ring behind it, and no cropping */
+.logo-tile.logo-badge {
+    object-fit: contain;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+}
+
 /* PROFILE (hero)
    Phones: photo beside the names, actions below.
    40-80rem: a full-width banner, names at the start and actions at the end.
@@ -852,21 +770,28 @@ button {
 
 /* phones: the names fill the space beside the photo, centred in it */
 .profile-names {
+    --name-size: var(--text-xl);
     flex: 1;
     min-width: 0;
     text-align: center;
 }
 
+/* All four lines are set to the English name's width, so they sit flush on
+   both sides. Every size below is a multiple of --name-size, so the fit
+   holds at every breakpoint.
+   Arabic name: sets about 7.6% narrower than the English at the same size,
+   and its ink sits slightly left of its box, hence the scale and the nudge. */
 .name-ar {
     font-family: var(--font-brand);
-    font-size: 1.5rem;
+    font-size: calc(var(--name-size) * 1.076);
+    translate: 0.05em -0.1em;
     font-weight: 900;
     line-height: 1.35;
     font-feature-settings: var(--ornate);
 }
 
 .name-en {
-    font-size: var(--text-xl);
+    font-size: var(--name-size);
     font-weight: 700;
     line-height: 1.15;
     letter-spacing: -0.015em;
@@ -875,7 +800,23 @@ button {
 .profile-role {
     margin-top: 0.25rem;
     color: var(--muted-foreground);
+    /* sized so "Tuwaiq Academy Alumnus" matches the name exactly */
+    font-size: calc(var(--name-size) * 0.615);
     line-height: 1.45;
+}
+
+.role-line {
+    display: block;
+    white-space: nowrap;
+}
+
+/* the shorter title line takes up its slack around the divider */
+.role-sep {
+    margin-inline: 0.607em;
+}
+
+.role-alumnus {
+    translate: 0.05em;
 }
 
 /* on phones the actions fill two even rows; from 40rem they size to content */
@@ -911,15 +852,8 @@ button {
         height: 6rem;
     }
 
-    .name-ar {
-        font-size: 1.75rem;
-    }
-
-    .name-en {
-        font-size: 1.625rem;
-    }
-
     .profile-names {
+        --name-size: 1.625rem;
         flex: initial;
         text-align: inherit;
     }
@@ -1210,6 +1144,54 @@ button {
 @media (min-width: 100rem) {
     .certs-grid {
         grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+/* Professional certifications: cards fill each line, four to a line at most.
+   A card's basis is one column's share of the line, and grow lets the cards
+   on the last, part-filled line stretch to use the rest of it. So any number
+   of cards fills the space; a fifth starts a new line. The 1px keeps rounding
+   from pushing the last card of a full line onto the next one. */
+.certs-fill {
+    --cols: 1;
+    --fill-gap: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--fill-gap);
+}
+
+.certs-fill > .card {
+    flex: 1 1 calc((100% - (var(--cols) - 1) * var(--fill-gap)) / var(--cols) - 1px);
+    container-type: inline-size;
+}
+
+/* The logo grows with its card. 2.75rem, the normal logo size, is the floor:
+   it holds for any card up to about 24rem wide (a phone, or four to a line
+   on a laptop). cqw measures the card's inner width, hence 22.5rem plus its
+   padding. Wider cards add 0.2px of logo per px of width, up to 5rem, which
+   is about the height of the title and button beside it, so a big logo never
+   makes the card taller. */
+.certs-fill .logo-tile {
+    --logo: clamp(2.75rem, calc(2.75rem + (100cqw - 22.5rem) * 0.2), 5rem);
+    width: var(--logo);
+    height: var(--logo);
+}
+
+@media (min-width: 40rem) {
+    .certs-fill {
+        --cols: 2;
+    }
+}
+
+@media (min-width: 64rem) {
+    .certs-fill {
+        --cols: 3;
+    }
+}
+
+@media (min-width: 80rem) {
+    .certs-fill {
+        --cols: 4;
     }
 }
 

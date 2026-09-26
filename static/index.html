@@ -12,31 +12,20 @@
     <meta property="og:description" content="Portfolio showcasing projects, experience, skills and certifications in AI Engineering.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://khalid-ai.dev/">
-    <meta property="og:image" content="https://khalid-ai.dev/og-image.png">
-    <meta property="og:image:width" content="300">
-    <meta property="og:image:height" content="300">
+    <meta property="og:image" content="https://khalid-ai.dev/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="2400">
+    <meta property="og:image:height" content="1260">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://khalid-ai.dev/og-image.png">
+    <meta name="twitter:image" content="https://khalid-ai.dev/og-image.jpg">
 
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#f3f6fa">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0a0a0f">
 
     <title>Khalid - Portfolio</title>
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-    <!-- Theme: a stored choice wins, otherwise follow the system. Runs before first paint, so no flash. -->
-    <script>
-        (function () {
-            var theme;
-            try { theme = localStorage.getItem('theme'); } catch (e) {}
-            if (theme !== 'light' && theme !== 'dark') {
-                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            }
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-    </script>
 
     <!-- Thmanyah (see @font-face in styles.css) -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -103,20 +92,6 @@
             <path d="M16 13H8"/>
             <path d="M16 17H8"/>
         </symbol>
-        <symbol id="i-sun" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2"/>
-            <path d="M12 20v2"/>
-            <path d="m4.93 4.93 1.41 1.41"/>
-            <path d="m17.66 17.66 1.41 1.41"/>
-            <path d="M2 12h2"/>
-            <path d="M20 12h2"/>
-            <path d="m6.34 17.66-1.41 1.41"/>
-            <path d="m19.07 4.93-1.41 1.41"/>
-        </symbol>
-        <symbol id="i-moon" viewBox="0 0 24 24">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-        </symbol>
     </svg>
 
     <!-- HEADER -->
@@ -124,7 +99,6 @@
         <div class="header-inner">
             <a href="#hero" class="brand" aria-label="Khalid Al Dosari, back to top">
                 <span class="brand-tile"><img src="logo.png" alt="" width="28" height="28"></span>
-                <span class="brand-name">Khalid Al Dosari</span>
             </a>
             <nav class="site-nav" id="siteNav" aria-label="Sections">
                 <a class="nav-link" href="#about">About</a>
@@ -134,10 +108,6 @@
                 <a class="nav-link" href="#skills">Skills</a>
             </nav>
             <div class="header-actions">
-                <button class="btn btn-outline btn-icon theme-toggle" id="themeToggle" type="button" aria-label="Dark theme" aria-pressed="false" title="Toggle dark theme">
-                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
-                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
-                </button>
                 <a class="btn btn-primary header-cv" href="assets/Khalid_Al_Dosari_AI_Engineer.pdf" target="_blank" rel="noopener">
                     <svg class="icon" aria-hidden="true"><use href="#i-cv"/></svg>CV
                 </a>
@@ -156,7 +126,7 @@
                 <div class="profile-names">
                     <p class="name-ar" lang="ar">خالد آل دوسـري</p>
                     <h1 class="name-en" id="profile-name">Khalid Al Dosari</h1>
-                    <p class="profile-role">CS Student | AI Engineer<br>Tuwaiq Academy Alumnus</p>
+                    <p class="profile-role"><span class="role-line role-title">NCA-GENL <span class="role-sep">|</span> AI Engineer</span> <span class="role-line role-alumnus">Tuwaiq Academy Alumnus</span></p>
                 </div>
             </div>
             <div class="profile-actions">
@@ -182,7 +152,7 @@
                     AI Engineering and Data Science. Experienced in building
                     end-to-end solutions built with python, data science, machine learning,
                     deep learning, MLOps, LLMs, RAG, generative AI, and agentic systems. Passed the
-                    Building and Developing AI Models Bootcamp by Tuwaiq Academy, and completed severalcourses such as
+                    Building and Developing AI Models Bootcamp by Tuwaiq Academy, and completed several courses such as
                     Building transformer-based NLP applications course by Tuwaiq Academy and NVIDIA, as well as other courses and certifications.
                     All of which enabled me to have the skills necessary for building scalable,
                     production-ready systems that turn raw data into actionable insights and
@@ -334,13 +304,10 @@
                         <ul class="chips" aria-label="Tech stack">
                             <li class="chip">Python</li>
                             <li class="chip">FastAPI</li>
-                            <li class="chip">NEXT.JS</li>
+                            <li class="chip">YOLOv8-OBB</li>
                             <li class="chip">Modal</li>
-                            <li class="chip">LangChain</li>
-                            <li class="chip">DeepSeek API</li>
-                            <li class="chip">TypeScript</li>
-                            <li class="chip">React</li>
-                            <li class="chip">Render</li>
+                            <li class="chip">LangGraph</li>
+                            <li class="chip">SQLite</li>
                         </ul>
                         <div class="card-actions">
                             <a href="https://github.com/khaliddosari/Raqeeb" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> for Raqeeb</span></a>
@@ -362,13 +329,10 @@
                         <ul class="chips" aria-label="Tech stack">
                             <li class="chip">Python</li>
                             <li class="chip">FastAPI</li>
-                            <li class="chip">NEXT.JS</li>
+                            <li class="chip">Pandas</li>
                             <li class="chip">Modal</li>
                             <li class="chip">LangChain</li>
-                            <li class="chip">DeepSeek API</li>
-                            <li class="chip">TypeScript</li>
-                            <li class="chip">React</li>
-                            <li class="chip">Render</li>
+                            <li class="chip">Firecracker</li>
                         </ul>
                         <div class="card-actions">
                             <a href="https://github.com/khaliddosari/Namtheg" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> for Namtheg AutoML</span></a>
@@ -387,16 +351,13 @@
                             signals plus CLIP alignment on 12K ImageNet-EEG pairs, benchmarked on CLIP-Sim against the 0.733 baseline.
                         </p>
                         <ul class="chips" aria-label="Tech stack">
-                            <li class="chip">Java</li>
-                            <li class="chip">Spring Boot</li>
-                            <li class="chip">Maven</li>
-                            <li class="chip">HTML</li>
-                            <li class="chip">JavaScript</li>
-                            <li class="chip">CSS</li>
+                            <li class="chip">Python</li>
+                            <li class="chip">Hugging Face Transformers</li>
+                            <li class="chip">Diffusion Architecture</li>
                         </ul>
                         <div class="card-actions">
                             <!---<a href="https://github.com/khaliddosari/n-queens" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> for N-Queens CSP</span></a>-->
-                            <!---<a href="https://n-queens.up.railway.app/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Demo</a>-->
+                            <a href="https://drive.google.com/file/d/1NP0lnYlwoQ8obTKYRYwuRI_NfS9xSsxc/view" target="_blank" rel="noopener" class="btn btn-sm btn-primary"><svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>Research Paper<span class="sr-only"> of Thaheen</span></a>
                         </div>
                     </article>
 
@@ -413,11 +374,8 @@
                         </p>
                         <ul class="chips" aria-label="Tech stack">
                             <li class="chip">Python</li>
-                            <li class="chip">JavaScript</li>
                             <li class="chip">Node.js</li>
                             <li class="chip">MongoDB</li>
-                            <li class="chip">HTML</li>
-                            <li class="chip">CSS</li>
                         </ul>
                         <div class="card-actions">
                             <a href="https://github.com/khaliddosari/web-project" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> for Nusuk</span></a>
@@ -442,7 +400,6 @@
                             <li class="chip">Vite</li>
                             <li class="chip">Supabase</li>
                             <li class="chip">Voiceflow</li>
-                            <li class="chip">JavaScript</li>
                         </ul>
                         <div class="card-actions">
                             <a href="https://github.com/khaliddosari/3ajib" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> for 3ajib</span></a>
@@ -460,11 +417,10 @@
                             with fully connected networks only and no convolution reaching 54.08% accuracy and 53.99% Weighted F1. Measuring exactly 
                             how that constraint costs by fine-tuning a MobileNetV2 CNN on the same split reaching 91.24% accuracy and 91.20% Weighted F1.</p>
                         <ul class="chips" aria-label="Tech stack">
-                            <li class="chip">Java</li>
-                            <li class="chip">HTML</li>
-                            <li class="chip">JavaScript</li>
-                            <li class="chip">CSS</li>
-                            <li class="chip">Cloudflare</li>
+                            <li class="chip">Python</li>
+                            <li class="chip">PyTorch</li>
+                            <li class="chip">TensorFlow</li>
+                            <li class="chip">Modal</li>
                         </ul>
                         <div class="card-actions">
                             <a href="https://github.com/khaliddosari/Neurotrast-Tuwaiq" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sr-only"> for Neurotrast</span></a>
@@ -485,16 +441,16 @@
                 </div>
             </header>
             <div class="panel-body">
-                <div class="card-grid certs-grid" id="cert-professional" role="tabpanel" aria-labelledby="tab-professional">
+                <div class="card-grid certs-fill" id="cert-professional" role="tabpanel" aria-labelledby="tab-professional">
 
                     <!-- NVIDIA-Certified Associate: Generative AI LLMs Card -->
                     <article class="card cert">
-                        <img src="assets/certifications/nvidia-certified-associate-generative-ai-llms.png" alt="NVIDIA logo" class="logo-tile" onerror="this.style.visibility='hidden';">
+                        <img src="assets/certifications/transparent-nvidia-certified-associate-generative-ai-llms.png" alt="NVIDIA-Certified Associate badge" class="logo-tile logo-badge" onerror="this.style.visibility='hidden';">
                         <div class="cert-main">
                             <h3 class="cert-title" title="NVIDIA-Certified Associate: Generative AI LLMs">NVIDIA-Certified Associate: Generative AI LLMs</h3>
                             <div class="cert-foot">
                                 <p class="cert-meta"><span class="cert-org">NVIDIA</span><span class="cert-date">September 2026</span></p>
-                                <a href="https://www.credly.com/badges/c9f84e34-32e5-4e67-8fe8-9fcf2ae50d1d/linked_in_profile" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> NVIDIA-Certified Associate: Generative AI LLMs, NVIDIA</span></a>
+                                <a href="https://www.credly.com/badges/c9f84e34-32e5-4e67-8fe8-9fcf2ae50d1d/public_url" target="_blank" rel="noopener" class="btn btn-sm btn-secondary"><svg class="icon" aria-hidden="true"><use href="#i-verify"/></svg>Verify<span class="sr-only"> NVIDIA-Certified Associate: Generative AI LLMs, NVIDIA</span></a>
                                 <!---<a href="https://drive.google.com/file/d/14YNwAXxzRYJs21KN-hapJmrtGckXTdYR/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>-->
                             </div>
                         </div>

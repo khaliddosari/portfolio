@@ -23,45 +23,6 @@ window.addEventListener('beforeunload', () => {
     sessionStorage.setItem('scrollPos', window.scrollY);
 });
 
-// Theme toggle. The inline script in <head> already set data-theme before
-// first paint; this keeps the button, the browser chrome colour and the
-// stored choice in step with it.
-const root = document.documentElement;
-const themeToggle = document.getElementById('themeToggle');
-const themeColor = document.querySelector('meta[name="theme-color"]');
-const THEME_COLORS = { light: '#f3f6fa', dark: '#0a0a0f' };
-
-function applyTheme(theme) {
-    root.setAttribute('data-theme', theme);
-    themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
-    themeColor.setAttribute('content', THEME_COLORS[theme]);
-}
-
-function storedTheme() {
-    try {
-        return localStorage.getItem('theme');
-    } catch (e) {
-        return null;
-    }
-}
-
-applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
-
-themeToggle.addEventListener('click', () => {
-    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    applyTheme(next);
-    try {
-        localStorage.setItem('theme', next);
-    } catch (e) {
-        // private mode: the choice lasts for this page only
-    }
-});
-
-// Follow the system setting until the visitor picks a theme themselves
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!storedTheme()) applyTheme(e.matches ? 'dark' : 'light');
-});
-
 // Tab counts follow the markup, so adding a card updates them
 document.querySelectorAll('[data-count]').forEach((el) => {
     el.textContent = document.querySelectorAll(el.dataset.count).length;
