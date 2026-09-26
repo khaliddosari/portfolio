@@ -812,7 +812,11 @@ button {
 
 /* the shorter title line takes up its slack around the divider */
 .role-sep {
-    margin-inline: 0.607em;
+    margin-inline: 0.565em;
+}
+
+.role-title {
+    translate: 0.06em;
 }
 
 .role-alumnus {
