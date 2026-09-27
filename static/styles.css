@@ -710,6 +710,9 @@ button {
 .prose {
     color: var(--muted-foreground);
     line-height: 1.6;
+    text-align: justify;
+    text-align-last: start;
+    hyphens: auto;
 }
 
 .prose b {
