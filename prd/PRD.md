@@ -53,7 +53,7 @@ navigation, a dark glass aesthetic, bilingual touches (English + Arabic).
 
 **Owner / subject**
 - **Name:** Khalid Al Dosari — خالد آل دوســـــري
-- **Hero tagline:** `AI Engineer | NCA-GENL` / `Tuwaiq Academy Alumnus`
+- **Hero tagline:** `AI Engineer | Data Scientist` / `Tuwaiq Academy Alumnus`
 - **Sidebar tagline (shorter):** `Data Scientist | AI Engineer`
 - **University:** Imam Mohammad bin Saud Islamic University (IMSIU), senior CS student
   (Bachelor's, Computer Science, August 2022 – present)
@@ -285,7 +285,7 @@ sideways inside the header.
 
 **Profile (`#hero`):** portrait `assets/mypic.jpeg` (hidden via `onerror` if it fails); Arabic name
 **خالد آل دوســـــري**; English name **Khalid Al Dosari** (the page `h1`); tagline **AI Engineer |
-NCA-GENL / Tuwaiq Academy Alumnus**; CTA "View My Work" → `#projects`; CV; icon buttons for
+Data Scientist / Tuwaiq Academy Alumnus**; CTA "View My Work" → `#projects`; CV; icon buttons for
 email, phone, LinkedIn, GitHub.
 
 The four name/tagline lines are fitted to the English name's width so they sit flush on both sides
