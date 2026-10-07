@@ -1181,6 +1181,12 @@ button {
     height: var(--logo);
 }
 
+/* badge art has transparent padding and no tile, so it reads smaller than a logo of the same box */
+.certs-fill .logo-tile.logo-badge {
+    width: calc(var(--logo) * 1.15);
+    height: calc(var(--logo) * 1.15);
+}
+
 @media (min-width: 40rem) {
     .certs-fill {
         --cols: 2;
