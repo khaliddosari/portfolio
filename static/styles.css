@@ -710,6 +710,9 @@ button {
 .prose {
     color: var(--muted-foreground);
     line-height: 1.6;
+    text-align: justify;
+    text-align-last: start;
+    hyphens: auto;
 }
 
 .prose b {
@@ -810,9 +813,10 @@ button {
     white-space: nowrap;
 }
 
-/* the shorter title line takes up its slack around the divider */
+/* extra slack around the divider, so the title line matches the other lines' width.
+   "AI Engineer | Data Scientist" is already close enough unstretched. */
 .role-sep {
-    margin-inline: 0.565em;
+    margin-inline: 0;
 }
 
 .role-title {
