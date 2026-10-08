@@ -197,7 +197,7 @@ width `--page-max` 105rem. Controls are 40px tall on touch, 32px with a mouse fr
 - **Panel:** `section.panel` > `header.panel-head` (`h2.panel-title`, no
   count) + `.panel-body`. A panel that holds cards adds `.panel-weak` so only
   the inner cards are full-strength glass.
-- **Card:** `article.card` inside `.card-grid` (`.projects-grid`, `.certs-grid`, `.certs-fill`).
+- **Card:** `article.card` inside `.card-grid` (`.projects-grid`, `.certs-grid`).
 - **Chip:** `li.chip` inside `ul.chips`: project tech stacks and skills.
 - **Header:** `.site-header` > `.brand` (`.brand-tile`, logo only), `nav.site-nav` >
   `.nav-link` (`.is-active`), `.header-actions` (CV button).
@@ -212,15 +212,10 @@ width `--page-max` 105rem. Controls are 40px tall on touch, 32px with a mouse fr
   `.panel-head` > `button.tab[role=tab]` (`aria-selected`, `aria-controls`, `.tab-count`); each
   panel is a `[role=tabpanel]`, the inactive one `hidden`. The active tab's underline sits on the
   header divider. On phones the tabs take their own full-width row.
-- **Certifications:** two tab panels, `#cert-professional` (`.certs-fill`) and `#cert-courses`
-  (`.certs-grid`), each holding `article.card.cert` > `img.logo-tile` + `.cert-main`
+- **Certifications:** two tab panels, `#cert-professional` and `#cert-courses`, both `.certs-grid`,
+  each holding `article.card.cert` > `img.logo-tile` + `.cert-main`
   (`h3.cert-title`, `.cert-foot` > `.cert-meta` (`.cert-org`, `.cert-date`) + Verify/PDF button).
-  `.certs-grid` is a fixed-column grid (1/2/3/4/5 columns by width). `.certs-fill` is a wrapping
-  flex row: each card's basis is one column's share (`--cols`: 1/2/3/4, never more than four) and it
-  can grow, so every line, the last included, fills the full width whatever the card count. Add or
-  remove a Professional card and the layout adjusts on its own. Each `.certs-fill` card is a size
-  container (`container-type: inline-size`) and its `.logo-tile` is sized in `cqw`: 2.75rem (the
-  normal size) as the minimum for cards up to about 24rem wide, growing to 5rem for wider ones.
+  `.certs-grid` is a fixed-column grid (1/2/3/4/5 columns by width); cards and logos keep a fixed size.
 - **Skills:** `.panel-body.skill-rows` > `.skill-row` > `h3.skill-label` + `ul.chips`.
 - **Footer:** `.site-footer` > `.footer-links` (start side) + copyright (end side).
 - **Prose:** `.prose` = muted body copy with `<b>` lifted to full contrast.

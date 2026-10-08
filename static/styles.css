@@ -1155,60 +1155,6 @@ button {
     }
 }
 
-/* Professional certifications: cards fill each line, four to a line at most.
-   A card's basis is one column's share of the line, and grow lets the cards
-   on the last, part-filled line stretch to use the rest of it. So any number
-   of cards fills the space; a fifth starts a new line. The 1px keeps rounding
-   from pushing the last card of a full line onto the next one. */
-.certs-fill {
-    --cols: 1;
-    --fill-gap: 0.75rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--fill-gap);
-}
-
-.certs-fill > .card {
-    flex: 1 1 calc((100% - (var(--cols) - 1) * var(--fill-gap)) / var(--cols) - 1px);
-    container-type: inline-size;
-}
-
-/* The logo grows with its card. 2.75rem, the normal logo size, is the floor:
-   it holds for any card up to about 24rem wide (a phone, or four to a line
-   on a laptop). cqw measures the card's inner width, hence 22.5rem plus its
-   padding. Wider cards add 0.2px of logo per px of width, up to 5rem, which
-   is about the height of the title and button beside it, so a big logo never
-   makes the card taller. */
-.certs-fill .logo-tile {
-    --logo: clamp(2.75rem, calc(2.75rem + (100cqw - 22.5rem) * 0.2), 5rem);
-    width: var(--logo);
-    height: var(--logo);
-}
-
-/* badge art has transparent padding and no tile, so it reads smaller than a logo of the same box */
-.certs-fill .logo-tile.logo-badge {
-    width: calc(var(--logo) * 1.15);
-    height: calc(var(--logo) * 1.15);
-}
-
-@media (min-width: 40rem) {
-    .certs-fill {
-        --cols: 2;
-    }
-}
-
-@media (min-width: 64rem) {
-    .certs-fill {
-        --cols: 3;
-    }
-}
-
-@media (min-width: 80rem) {
-    .certs-fill {
-        --cols: 4;
-    }
-}
-
 /* CERTIFICATIONS: logo beside a two-line title, source and action below */
 .cert {
     flex-direction: row;
