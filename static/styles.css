@@ -1149,8 +1149,9 @@ button {
     }
 }
 
+/* professional stays at 4 so its four cards fill the row */
 @media (min-width: 100rem) {
-    .certs-grid {
+    #cert-courses {
         grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 }
